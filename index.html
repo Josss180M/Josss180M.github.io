@@ -157,18 +157,31 @@
     border:1px solid rgba(var(--line),var(--line-alpha)); border-radius:999px; color:var(--ink);
   }
 
-  details.techdetails{margin-top:1.4rem;}
+  details.techdetails{margin-top:1.5rem;}
   details.techdetails > summary{
     cursor:pointer; list-style:none; user-select:none;
-    display:inline-flex; align-items:center; gap:.5rem;
-    font-family:var(--font-mono); font-size:.8rem; text-transform:uppercase;
-    letter-spacing:.05em; color:var(--meter); padding:.6rem 0;
+    display:inline-flex; align-items:center; gap:.55rem;
+    font-size:.88rem; font-weight:700; color:var(--meter);
+    padding:.7rem 1.1rem;
+    border:1.5px solid var(--meter);
+    border-radius:999px;
+    background:var(--paper-raised);
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
   }
   details.techdetails > summary::-webkit-details-marker{display:none;}
-  details.techdetails > summary::before{content:"▸"; display:inline-block; transition:transform .15s ease; font-size:.7rem;}
-  details.techdetails[open] > summary::before{transform:rotate(90deg);}
-  details.techdetails > summary:hover{color:var(--yellow);}
-  .techdetails-body{padding-top:.6rem;}
+  details.techdetails > summary::after{
+    content:"▾"; display:inline-block; font-size:.75rem;
+    transition:transform .15s ease;
+  }
+  details.techdetails[open] > summary::after{transform:rotate(180deg);}
+  details.techdetails > summary:hover,
+  details.techdetails > summary:focus-visible{
+    background:var(--meter); color:#fff; border-color:var(--meter);
+  }
+  details.techdetails > summary .when-open{display:none;}
+  details.techdetails[open] > summary .when-closed{display:none;}
+  details.techdetails[open] > summary .when-open{display:inline;}
+  .techdetails-body{padding-top:1.1rem; padding-left:.2rem;}
 
   .route{display:flex; gap:0; margin:1.4rem 0 1.8rem; overflow-x:auto; padding-bottom:.4rem;}
   .route .stop{flex:1 0 145px; position:relative; padding:1rem .9rem .8rem 0; border-top:2px solid rgba(var(--line),var(--line-alpha));}
@@ -354,7 +367,10 @@
       </div>
 
       <details class="techdetails">
-        <summary>Ver detalle técnico: pipeline, capturas y hallazgos</summary>
+        <summary>
+          <span class="when-closed">Ver detalle técnico: pipeline, capturas y hallazgos</span>
+          <span class="when-open">Ocultar detalle técnico</span>
+        </summary>
         <div class="techdetails-body">
 
           <div class="route">
@@ -445,7 +461,10 @@
       </div>
 
       <details class="techdetails">
-        <summary>Ver detalle técnico: modelo de datos, permisos y seguridad</summary>
+        <summary>
+          <span class="when-closed">Ver detalle técnico: modelo de datos, permisos y seguridad</span>
+          <span class="when-open">Ocultar detalle técnico</span>
+        </summary>
         <div class="techdetails-body">
 
           <div class="shots">
