@@ -8,15 +8,15 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%95%3C/text%3E%3C/svg%3E">
 <style>
   :root{
-    --ink:#4a3420;
-    --paper:#fdf6ea;
-    --paper-raised:#f8ead0;
-    --yellow:#f0a325;
-    --meter:#e2602e;
-    --slate:#93765a;
-    --line: 147,118,90;
-    --line-alpha:0.24;
-    --radius:2px;
+    --ink:#2b2117;
+    --paper:#ffffff;
+    --paper-raised:#faf5ec;
+    --yellow:#dd8f1e;
+    --meter:#c94a26;
+    --slate:#786754;
+    --line: 120,103,84;
+    --line-alpha:0.22;
+    --radius:3px;
     --font-display:'Arial Narrow','Helvetica Neue Condensed',Arial,sans-serif;
     --font-body:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     --font-mono:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace;
@@ -24,8 +24,8 @@
   @media (prefers-color-scheme: dark){
     :root{
       --ink:#f6ead3;
-      --paper:#241810;
-      --paper-raised:#2f2116;
+      --paper:#211610;
+      --paper-raised:#2c1e16;
       --yellow:#f3b54a;
       --meter:#ff7a49;
       --slate:#bb9f7f;
@@ -34,292 +34,308 @@
     }
   }
   :root[data-theme="dark"]{
-    --ink:#f6ead3; --paper:#241810; --paper-raised:#2f2116;
+    --ink:#f6ead3; --paper:#211610; --paper-raised:#2c1e16;
     --yellow:#f3b54a; --meter:#ff7a49; --slate:#bb9f7f;
     --line:246,234,211; --line-alpha:0.16;
   }
   :root[data-theme="light"]{
-    --ink:#4a3420; --paper:#fdf6ea; --paper-raised:#f8ead0;
-    --yellow:#f0a325; --meter:#e2602e; --slate:#93765a;
-    --line:147,118,90; --line-alpha:0.24;
+    --ink:#2b2117; --paper:#ffffff; --paper-raised:#faf5ec;
+    --yellow:#dd8f1e; --meter:#c94a26; --slate:#786754;
+    --line:120,103,84; --line-alpha:0.22;
   }
 
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   html,body{margin:0;padding:0;}
   body{
     background:var(--paper);
     color:var(--ink);
     font-family:var(--font-body);
-    line-height:1.55;
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;}
   h1,h2,h3{text-wrap:balance; margin:0;}
   code{font-family:var(--font-mono); font-size:.92em;}
   .mono{font-family:var(--font-mono); font-variant-numeric:tabular-nums;}
-  .board{display:grid; grid-template-columns:280px 1fr; max-width:1180px; margin:0 auto;}
-  .plate{
-    position:sticky; top:0; align-self:start; height:100vh;
-    padding:2.4rem 1.6rem 2rem;
-    border-right:1px solid rgba(var(--line),var(--line-alpha));
-    display:flex; flex-direction:column; gap:2.2rem;
+  .wrap{max-width:840px; margin:0 auto; padding:0 1.6rem;}
+
+  /* top bar */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(var(--line),var(--line-alpha));
   }
-  .plate-id .medallion{
+  .topbar-inner{
+    max-width:840px; margin:0 auto; padding:0 1.6rem;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    height:3.6rem;
+  }
+  .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none;}
+  .brand .mark{
     display:inline-flex; align-items:center; justify-content:center;
-    width:3rem;height:3rem; background:var(--yellow); color:var(--ink);
-    font-family:var(--font-display); font-weight:800; font-size:1.2rem;
-    letter-spacing:.02em; border-radius:var(--radius);
+    width:1.9rem; height:1.9rem; background:var(--yellow); color:#fff;
+    font-family:var(--font-display); font-weight:800; font-size:.85rem;
+    border-radius:var(--radius);
   }
-  .plate-id h1{
+  .brand .name{font-weight:700; font-size:.95rem;}
+  nav.toplinks{display:flex; gap:1.4rem;}
+  nav.toplinks a{font-size:.85rem; text-decoration:none; color:var(--slate);}
+  nav.toplinks a:hover{color:var(--meter);}
+  @media (max-width:680px){ nav.toplinks{display:none;} }
+
+  section{padding:3.2rem 0; scroll-margin-top:4rem;}
+  section + section{border-top:1px solid rgba(var(--line),var(--line-alpha));}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.72rem; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--meter); margin-bottom:.5rem; display:block;
+  }
+  h2.h{font-size:1.5rem; font-weight:800; margin-bottom:1.2rem;}
+  .lede{max-width:64ch; color:var(--ink);}
+  .lede.muted{color:var(--slate);}
+  .lede.small{font-size:.86rem;}
+
+  /* hero */
+  .hero{padding-top:3.4rem;}
+  .hero .role{
+    font-family:var(--font-mono); font-size:.8rem; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--meter); margin-bottom:.7rem; display:block;
+  }
+  .hero h1{
     font-family:var(--font-display); font-stretch:condensed; font-weight:800;
-    font-size:1.7rem; letter-spacing:.01em; margin-top:.85rem; text-transform:uppercase;
+    font-size:clamp(2.1rem,6vw,3.1rem); line-height:1.08; letter-spacing:.005em;
   }
-  .plate-id .role{margin:.25rem 0 0; font-size:.92rem; color:var(--slate);}
-  .stops{display:flex; flex-direction:column; gap:.05rem;}
-  .stops a{
-    display:flex; align-items:baseline; gap:.6rem; padding:.4rem 0;
-    font-size:.86rem; text-decoration:none; color:var(--slate);
-    border-bottom:1px dashed rgba(var(--line),var(--line-alpha));
-  }
-  .stops a::before{content:"→"; font-family:var(--font-mono); opacity:.6;}
-  .stops a:hover{color:var(--yellow);}
-  .contact-chips{margin-top:auto; display:flex; flex-direction:column; gap:.5rem;}
-  .contact-chips a{
-    font-family:var(--font-mono); font-size:.78rem; text-decoration:none;
-    padding:.5rem .65rem; background:var(--paper-raised);
+  .hero p.lede{margin-top:1.1rem; font-size:1.06rem;}
+  .contact-row{display:flex; gap:.7rem; flex-wrap:wrap; margin-top:1.5rem;}
+  .contact-row a{
+    font-size:.85rem; text-decoration:none; padding:.55rem .9rem;
     border:1px solid rgba(var(--line),var(--line-alpha)); border-radius:var(--radius);
   }
-  .contact-chips a:hover{border-color:var(--yellow); color:var(--yellow);}
+  .contact-row a.primary{background:var(--yellow); border-color:var(--yellow); color:#fff; font-weight:600;}
+  .contact-row a:not(.primary):hover{border-color:var(--meter); color:var(--meter);}
 
-  .manifest{padding:2.4rem 2rem 4rem 2.2rem;}
-  section{padding-top:2.6rem; margin-bottom:1rem; scroll-margin-top:1rem;}
-  section + section{border-top:1px dashed rgba(var(--line),var(--line-alpha));}
-  .stub{display:flex; align-items:baseline; gap:.7rem; margin-bottom:1.2rem; flex-wrap:wrap;}
-  .stub .num{font-family:var(--font-mono); font-size:.8rem; color:var(--meter); letter-spacing:.05em;}
-  .stub h2{
-    font-family:var(--font-display); font-stretch:condensed; font-weight:800;
-    font-size:1.55rem; text-transform:uppercase; letter-spacing:.01em;
-  }
-  .lede{max-width:62ch; color:var(--ink);}
-  .lede.muted{color:var(--slate);}
-  .lede.small{font-size:.85rem;}
-
-  .hero{padding-top:1rem;}
-  .hero .tagline{
-    font-family:var(--font-display); font-stretch:condensed; font-weight:800;
-    font-size:clamp(2rem,5vw,3.4rem); line-height:1.05; text-transform:uppercase; max-width:18ch;
-  }
-  .hero .tagline em{font-style:normal; color:var(--yellow);}
-  .hero p.lede{margin-top:1.1rem; font-size:1.05rem;}
-
-  .route{display:flex; gap:0; margin:1.6rem 0 2rem; overflow-x:auto; padding-bottom:.4rem;}
-  .route .stop{flex:1 0 150px; position:relative; padding:1rem .9rem .8rem 0; border-top:2px solid rgba(var(--line),var(--line-alpha));}
-  .route .stop::before{content:""; position:absolute; top:-5px; left:0; width:8px;height:8px; background:var(--yellow); border-radius:50%;}
-  .route .stop .stopnum{font-family:var(--font-mono); font-size:.72rem; color:var(--meter);}
-  .route .stop .stopname{font-size:.86rem; font-weight:600; margin:.25rem 0 .2rem;}
-  .route .stop .stopstate{font-family:var(--font-mono); font-size:.7rem; color:var(--slate); text-transform:uppercase; letter-spacing:.04em;}
-
-  .meters{
+  .stat-row{
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-    background:rgba(var(--line),var(--line-alpha)); border:1px solid rgba(var(--line),var(--line-alpha));
-    margin:1.6rem 0;
+    background:rgba(var(--line),var(--line-alpha));
+    border:1px solid rgba(var(--line),var(--line-alpha));
+    margin-top:2.2rem;
   }
-  .meter-tile{background:var(--paper); padding:1.1rem 1rem;}
-  .meter-tile .stat-value{font-family:var(--font-mono); font-size:1.7rem; font-weight:700; color:var(--meter); display:block;}
-  .meter-tile .stat-label{font-size:.76rem; color:var(--slate); margin-top:.3rem; display:block;}
-
-  .shots{display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; margin:1.8rem 0;}
-  .shot{background:var(--paper-raised); border:1px solid rgba(var(--line),var(--line-alpha)); padding:.5rem;}
-  .shot .tab{
-    font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em;
-    color:var(--meter); padding:.3rem .1rem .5rem;
+  .stat-tile{background:var(--paper); padding:1.2rem 1rem;}
+  .stat-tile .stat-value{
+    font-family:var(--font-mono); font-size:1.7rem; font-weight:700; color:var(--meter); display:block;
   }
-  .shot img{display:block; width:100%; height:auto; border:1px solid rgba(var(--line),var(--line-alpha));}
-  .shot figcaption{font-size:.78rem; color:var(--slate); margin-top:.55rem; line-height:1.4;}
+  .stat-tile .stat-label{font-size:.78rem; color:var(--slate); margin-top:.35rem; display:block;}
+  @media (max-width:560px){ .stat-row{grid-template-columns:1fr;} }
 
-  .findings{list-style:none; margin:1.2rem 0 0; padding:0; display:grid; gap:.55rem; max-width:64ch;}
-  .findings li{padding-left:1.1rem; position:relative; font-size:.95rem;}
-  .findings li::before{content:"·"; position:absolute; left:0; top:0; color:var(--yellow); font-weight:900; font-size:1.3rem; line-height:.9;}
-
-  .links-row{margin-top:1.4rem; display:flex; gap:.9rem; flex-wrap:wrap;}
-  .links-row a{
-    font-family:var(--font-mono); font-size:.8rem; text-decoration:none;
-    padding:.55rem .8rem; border:1px solid var(--yellow); border-radius:var(--radius); color:var(--ink);
-  }
-  .links-row a:hover{background:var(--yellow); color:var(--ink);}
-
-  .tag-row{display:flex; gap:.5rem; flex-wrap:wrap; margin:1.1rem 0 1.5rem;}
-  .tag{
-    font-family:var(--font-mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.03em;
-    padding:.3rem .55rem; border:1px solid rgba(var(--line),var(--line-alpha)); color:var(--slate); border-radius:var(--radius);
-  }
-
-  .auto-list{margin-top:1.3rem; display:grid; gap:.5rem; max-width:64ch;}
-  .auto-list .row{
-    display:grid; grid-template-columns:1.4fr 1fr; gap:.8rem; font-size:.86rem; padding:.55rem 0;
-    border-bottom:1px dashed rgba(var(--line),var(--line-alpha));
-  }
-  .auto-list .row span:first-child{color:var(--ink);}
-  .auto-list .row span:last-child{color:var(--slate);}
-  .auto-list .head{font-family:var(--font-mono); text-transform:uppercase; font-size:.7rem; color:var(--meter); letter-spacing:.05em;}
-
-  .table-wrap{overflow-x:auto; margin:1.2rem 0;}
-  .matrix{width:100%; border-collapse:collapse; font-size:.85rem; min-width:520px;}
-  .matrix th, .matrix td{padding:.5rem .6rem; text-align:left; border-bottom:1px dashed rgba(var(--line),var(--line-alpha)); white-space:nowrap;}
-  .matrix td:first-child{white-space:normal;}
-  .matrix th{font-family:var(--font-mono); text-transform:uppercase; font-size:.68rem; letter-spacing:.04em; color:var(--meter);}
-  .matrix td.yes{color:var(--ink); font-weight:700;}
-  .matrix td.no{color:var(--slate);}
-
-  .statepath{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:1.3rem 0 .7rem;}
-  .statepath .state{font-family:var(--font-mono); font-size:.8rem; padding:.35rem .6rem; border:1px solid rgba(var(--line),var(--line-alpha)); border-radius:var(--radius);}
-  .statepath .state.pay{border-color:var(--yellow); color:var(--yellow);}
-  .statepath .arrow{color:var(--meter); font-weight:700;}
-
+  /* experience */
   .job{max-width:66ch;}
   .job .jobhead{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:baseline;}
   .job .jobhead h3{font-size:1.05rem; font-weight:700;}
   .job .jobhead .dates{font-family:var(--font-mono); font-size:.78rem; color:var(--slate);}
-  .job ul{margin:.7rem 0 0; padding-left:1.1rem;}
-  .job li{margin-bottom:.4rem; font-size:.93rem;}
+  .job ul{margin:.8rem 0 0; padding-left:1.15rem;}
+  .job li{margin-bottom:.45rem; font-size:.94rem;}
 
-  .project{max-width:66ch; padding:1.1rem 0 0;}
-  .project h3{font-size:1rem; font-weight:700; margin-bottom:.5rem;}
-  .project ul{margin:.4rem 0 .7rem; padding-left:1.05rem;}
-  .project li{font-size:.87rem; margin-bottom:.3rem;}
-  .project .stack{font-family:var(--font-mono); font-size:.72rem; color:var(--meter); text-transform:uppercase; letter-spacing:.03em;}
+  /* skills as pills */
+  .skillblock{margin-bottom:1.4rem;}
+  .skillblock h4{font-size:.85rem; font-weight:700; color:var(--slate); margin-bottom:.6rem;}
+  .pillrow{display:flex; flex-wrap:wrap; gap:.5rem;}
+  .pillrow span{
+    font-size:.83rem; padding:.4rem .8rem; background:var(--paper-raised);
+    border:1px solid rgba(var(--line),var(--line-alpha)); border-radius:999px;
+  }
 
-  .skillgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem;}
-  .skillgroup h4{font-family:var(--font-mono); text-transform:uppercase; font-size:.72rem; letter-spacing:.05em; color:var(--meter); margin-bottom:.55rem;}
-  .skillgroup ul{list-style:none; margin:0; padding:0;}
-  .skillgroup li{font-size:.87rem; padding:.3rem 0; border-bottom:1px dashed rgba(var(--line),var(--line-alpha));}
+  /* projects */
+  .project-card{padding:2rem 0;}
+  .project-card + .project-card{border-top:1px dashed rgba(var(--line),var(--line-alpha));}
+  .project-head{display:flex; justify-content:space-between; align-items:baseline; gap:1rem; flex-wrap:wrap; margin-bottom:.6rem;}
+  .project-head h3{font-size:1.25rem; font-weight:800;}
+  .project-head .status{font-family:var(--font-mono); font-size:.72rem; color:var(--slate); text-transform:uppercase; letter-spacing:.04em;}
+  .quickfacts{display:flex; gap:.6rem; flex-wrap:wrap; margin:1rem 0 1.3rem;}
+  .quickfacts span{
+    font-size:.8rem; padding:.4rem .75rem; background:var(--paper-raised);
+    border:1px solid rgba(var(--line),var(--line-alpha)); border-radius:999px; color:var(--ink);
+  }
 
-  .edu-row{display:flex; justify-content:space-between; gap:1rem; padding:.6rem 0; border-bottom:1px dashed rgba(var(--line),var(--line-alpha)); max-width:66ch; flex-wrap:wrap;}
-  .edu-row .school{font-weight:600; font-size:.92rem;}
+  details.techdetails{margin-top:1.4rem;}
+  details.techdetails > summary{
+    cursor:pointer; list-style:none; user-select:none;
+    display:inline-flex; align-items:center; gap:.5rem;
+    font-family:var(--font-mono); font-size:.8rem; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--meter); padding:.6rem 0;
+  }
+  details.techdetails > summary::-webkit-details-marker{display:none;}
+  details.techdetails > summary::before{content:"▸"; display:inline-block; transition:transform .15s ease; font-size:.7rem;}
+  details.techdetails[open] > summary::before{transform:rotate(90deg);}
+  details.techdetails > summary:hover{color:var(--yellow);}
+  .techdetails-body{padding-top:.6rem;}
+
+  .route{display:flex; gap:0; margin:1.4rem 0 1.8rem; overflow-x:auto; padding-bottom:.4rem;}
+  .route .stop{flex:1 0 145px; position:relative; padding:1rem .9rem .8rem 0; border-top:2px solid rgba(var(--line),var(--line-alpha));}
+  .route .stop::before{content:""; position:absolute; top:-5px; left:0; width:8px;height:8px; background:var(--yellow); border-radius:50%;}
+  .route .stop .stopnum{font-family:var(--font-mono); font-size:.7rem; color:var(--meter);}
+  .route .stop .stopname{font-size:.85rem; font-weight:600; margin:.25rem 0 .2rem;}
+  .route .stop .stopstate{font-family:var(--font-mono); font-size:.68rem; color:var(--slate); text-transform:uppercase; letter-spacing:.04em;}
+
+  .meters{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:rgba(var(--line),var(--line-alpha)); border:1px solid rgba(var(--line),var(--line-alpha));
+    margin:1.4rem 0;
+  }
+  .meter-tile{background:var(--paper); padding:1.05rem .95rem;}
+  .meter-tile .stat-value{font-family:var(--font-mono); font-size:1.55rem; font-weight:700; color:var(--meter); display:block;}
+  .meter-tile .stat-label{font-size:.74rem; color:var(--slate); margin-top:.3rem; display:block;}
+  @media (max-width:560px){ .meters{grid-template-columns:repeat(2,1fr);} }
+
+  .shots{display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; margin:1.6rem 0;}
+  .shot{background:var(--paper-raised); border:1px solid rgba(var(--line),var(--line-alpha)); padding:.5rem;}
+  .shot .tab{font-family:var(--font-mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.05em; color:var(--meter); padding:.3rem .1rem .5rem;}
+  .shot img{display:block; width:100%; height:auto; border:1px solid rgba(var(--line),var(--line-alpha));}
+  .shot figcaption{font-size:.76rem; color:var(--slate); margin-top:.5rem; line-height:1.4;}
+  @media (max-width:640px){ .shots{grid-template-columns:1fr;} }
+
+  .findings{list-style:none; margin:1.2rem 0 0; padding:0; display:grid; gap:.5rem; max-width:64ch;}
+  .findings li{padding-left:1.1rem; position:relative; font-size:.93rem;}
+  .findings li::before{content:"·"; position:absolute; left:0; top:0; color:var(--yellow); font-weight:900; font-size:1.3rem; line-height:.9;}
+
+  .links-row{margin-top:1.3rem; display:flex; gap:.8rem; flex-wrap:wrap;}
+  .links-row a{
+    font-family:var(--font-mono); font-size:.78rem; text-decoration:none;
+    padding:.5rem .8rem; border:1px solid var(--yellow); border-radius:var(--radius); color:var(--ink);
+  }
+  .links-row a:hover{background:var(--yellow); color:#fff; border-color:var(--yellow);}
+
+  .table-wrap{overflow-x:auto; margin:1.2rem 0;}
+  .matrix{width:100%; border-collapse:collapse; font-size:.83rem; min-width:520px;}
+  .matrix th, .matrix td{padding:.5rem .6rem; text-align:left; border-bottom:1px dashed rgba(var(--line),var(--line-alpha)); white-space:nowrap;}
+  .matrix td:first-child{white-space:normal;}
+  .matrix th{font-family:var(--font-mono); text-transform:uppercase; font-size:.66rem; letter-spacing:.04em; color:var(--meter);}
+  .matrix td.yes{color:var(--ink); font-weight:700;}
+  .matrix td.no{color:var(--slate);}
+
+  .statepath{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:1rem 0 .6rem;}
+  .statepath .state{font-family:var(--font-mono); font-size:.78rem; padding:.35rem .6rem; border:1px solid rgba(var(--line),var(--line-alpha)); border-radius:var(--radius);}
+  .statepath .state.pay{border-color:var(--yellow); color:var(--yellow);}
+  .statepath .arrow{color:var(--meter); font-weight:700;}
+
+  /* other projects */
+  .minicard{padding:1.2rem 0;}
+  .minicard h3{font-size:1rem; font-weight:700; margin-bottom:.5rem;}
+  .minicard ul{margin:.4rem 0 .7rem; padding-left:1.05rem;}
+  .minicard li{font-size:.88rem; margin-bottom:.3rem;}
+  .minicard .stack{font-family:var(--font-mono); font-size:.72rem; color:var(--meter); text-transform:uppercase; letter-spacing:.03em;}
+
+  /* education */
+  .edu-row{display:flex; justify-content:space-between; gap:1rem; padding:.65rem 0; border-bottom:1px dashed rgba(var(--line),var(--line-alpha)); flex-wrap:wrap;}
+  .edu-row .school{font-weight:600; font-size:.93rem;}
   .edu-row .years{font-family:var(--font-mono); font-size:.78rem; color:var(--slate);}
   .certs{margin-top:1rem; display:flex; flex-direction:column; gap:.4rem;}
   .certs .cert{font-size:.88rem; color:var(--slate);}
   .certs .cert strong{color:var(--ink);}
 
-  footer{
-    padding-top:2.6rem; border-top:1px dashed rgba(var(--line),var(--line-alpha));
-    font-size:.8rem; color:var(--slate); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
-  }
+  footer{padding:2.6rem 0 3.4rem; font-size:.8rem; color:var(--slate); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;}
 
-  @media (max-width:860px){
-    .board{grid-template-columns:1fr;}
-    .plate{
-      position:relative; height:auto; flex-direction:row; align-items:center; overflow-x:auto;
-      gap:1.4rem; padding:1.2rem 1.4rem; border-right:none; border-bottom:1px solid rgba(var(--line),var(--line-alpha));
-    }
-    .plate-id{flex:0 0 auto;}
-    .stops{flex-direction:row; gap:.9rem;}
-    .stops a{border-bottom:none; white-space:nowrap;}
-    .contact-chips{flex-direction:row; margin-top:0;}
-    .manifest{padding:1.6rem 1.2rem 3rem;}
-    .meters{grid-template-columns:repeat(2,1fr);}
-    .shots{grid-template-columns:1fr;}
-    .skillgrid{grid-template-columns:1fr;}
-  }
-
-  @media (prefers-reduced-motion: no-preference){
-    .reveal{animation:settle .5s ease both;}
-    @keyframes settle{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
-  }
-
-  @media print{
-    .board{display:block; max-width:none;}
-    .plate{position:static; height:auto; border-right:none; border-bottom:1px solid rgba(var(--line),var(--line-alpha)); flex-direction:row; align-items:center; gap:1.6rem; padding:0 0 1rem;}
-    .stops{display:none;}
-    .contact-chips{flex-direction:row; margin-top:0;}
-    .manifest{padding:1.2rem 0 0;}
-    .route{overflow-x:visible; flex-wrap:wrap;}
-    section{break-inside:avoid-page;}
-    .reveal{animation:none; opacity:1; transform:none;}
-  }
 </style>
 </head>
 <body>
 
-<div class="board">
-  <aside class="plate">
-    <div class="plate-id">
-      <span class="medallion">JM</span>
-      <h1>Joshue Moreno</h1>
-      <p class="role">Data Analyst · Python / SQL / Power BI</p>
-    </div>
-    <nav class="stops">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">
+      <span class="mark">JM</span>
+      <span class="name">Joshue Moreno</span>
+    </a>
+    <nav class="toplinks">
       <a href="#about">Perfil</a>
-      <a href="#taxi">NYC Taxi Analytics</a>
-      <a href="#cocina">Cocina MVP</a>
       <a href="#experience">Experiencia</a>
-      <a href="#projects">Otros proyectos</a>
       <a href="#skills">Habilidades</a>
+      <a href="#projects">Proyectos</a>
       <a href="#education">Formación</a>
       <a href="#contact">Contacto</a>
     </nav>
-    <div class="contact-chips">
-      <a href="mailto:joshuemoreno612@gmail.com">joshuemoreno612@gmail.com</a>
+  </div>
+</div>
+
+<div id="top"></div>
+
+<main class="wrap">
+
+  <section id="about" class="hero">
+    <span class="role">Data Analyst · Python / SQL / Power BI</span>
+    <h1>Convierto datos de operación real en sistemas que se usan.</h1>
+    <p class="lede">Data Analyst con formación en Ingeniería en Sistemas Computacionales. Trabajo con SQL, Power BI y Python para modelar, limpiar y visualizar datos de negocio, y con Node.js/PostgreSQL cuando el problema pide construir el backend completo. Actualmente en Odella (CDMX), administrando datos de CRM, ERP y Dynamics 365.</p>
+
+    <div class="contact-row">
+      <a class="primary" href="mailto:joshuemoreno612@gmail.com">joshuemoreno612@gmail.com</a>
       <a href="https://linkedin.com/in/joshue-moreno-3279692b3" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a href="https://github.com/Josss180M" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
-  </aside>
 
-  <main class="manifest">
+    <div class="stat-row">
+      <div class="stat-tile"><span class="stat-value mono" data-target="119" data-suffix="M">0</span><span class="stat-label">registros reales analizados</span></div>
+      <div class="stat-tile"><span class="stat-value mono" data-target="0.67" data-decimals="2">0</span><span class="stat-label">R² en modelo predictivo de propinas</span></div>
+      <div class="stat-tile"><span class="stat-value mono" data-target="300" data-suffix="K/s">0</span><span class="stat-label">filas por segundo cargadas a PostgreSQL</span></div>
+    </div>
+  </section>
 
-    <section id="about" class="hero">
-      <p class="tagline">Convierto datos de <em>operación real</em> en sistemas que se usan.</p>
-      <p class="lede">Data Analyst con formación en Ingeniería en Sistemas Computacionales. Trabajo con SQL, Power BI y Python para modelar, limpiar y visualizar datos de negocio, y con Node.js/PostgreSQL cuando el problema pide construir el backend completo. Actualmente en Odella (CDMX), administrando datos de CRM, ERP y Dynamics 365.</p>
-    </section>
-
-    <section id="taxi">
-      <div class="stub"><span class="num">PROYECTO 01</span><h2>NYC Taxi Analytics</h2></div>
-      <p class="lede muted">Pipeline end-to-end de portafolio sobre ~119M viajes reales de taxis amarillos de Nueva York (2022–2024): ingesta vía API, validación en Excel, limpieza y modelo de Machine Learning en Python, modelado relacional en PostgreSQL y dashboard ejecutivo en Power BI.</p>
-
-      <div class="route">
-        <div class="stop"><span class="stopnum">01</span><div class="stopname">API REST</div><span class="stopstate">Completado</span></div>
-        <div class="stop"><span class="stopnum">02</span><div class="stopname">Excel + Power Query</div><span class="stopstate">Completado</span></div>
-        <div class="stop"><span class="stopnum">03</span><div class="stopname">Python EDA + ML</div><span class="stopstate">Completado</span></div>
-        <div class="stop"><span class="stopnum">04</span><div class="stopname">PostgreSQL</div><span class="stopstate">Completado</span></div>
-        <div class="stop"><span class="stopnum">05</span><div class="stopname">Power BI</div><span class="stopstate">Completado</span></div>
+  <section id="experience">
+    <span class="eyebrow">Experiencia</span>
+    <h2 class="h">Trayectoria</h2>
+    <div class="job">
+      <div class="jobhead">
+        <h3>TI Analyst — Odella, CDMX</h3>
+        <span class="dates mono">Marzo 2025 — Actualidad</span>
       </div>
-
-      <div class="meters">
-        <div class="meter-tile"><span class="stat-value mono" data-target="119" data-suffix="M">0</span><span class="stat-label">registros reales procesados</span></div>
-        <div class="meter-tile"><span class="stat-value mono" data-target="26.7" data-decimals="1" data-suffix="M">0</span><span class="stat-label">filas cargadas en PostgreSQL</span></div>
-        <div class="meter-tile"><span class="stat-value mono" data-target="1.28" data-decimals="2" data-prefix="$" data-suffix="M">0</span><span class="stat-label">revenue generado en JFK Airport</span></div>
-        <div class="meter-tile"><span class="stat-value mono" data-target="0.67" data-decimals="2">0</span><span class="stat-label">R² del modelo de propinas (RandomForest)</span></div>
-        <div class="meter-tile"><span class="stat-value mono" data-target="80" data-suffix="%">0</span><span class="stat-label">de los pagos son con tarjeta</span></div>
-        <div class="meter-tile"><span class="stat-value mono" data-target="88" data-suffix="%">0</span><span class="stat-label">del volumen de viajes es en Manhattan</span></div>
-      </div>
-
-      <p class="lede small muted">Capturas reales del reporte de Power BI (modelo cargado con una muestra de 810,000 viajes vía PostgreSQL):</p>
-      <div class="shots">
-        <figure class="shot">
-          <div class="tab">Overview</div>
-          <img src="assets/img/powerbi-overview.png" alt="Dashboard de Power BI, página Overview: KPIs de Total Revenue, Total Trips, Avg Fare y Avg Tip %, tendencia mensual de revenue y distribución por tipo de pago" width="1512" height="853" loading="lazy">
-          <figcaption>$14.53M en revenue, 810K viajes, tarifa promedio $17.94, 21% de propina promedio.</figcaption>
-        </figure>
-        <figure class="shot">
-          <div class="tab">Revenue Analysis</div>
-          <img src="assets/img/powerbi-revenue-analysis.png" alt="Dashboard de Power BI, página Revenue Analysis: revenue por año, tabla de rate codes, gauge de tarifa promedio contra meta y dispersión de tarifa vs distancia" width="1517" height="849" loading="lazy">
-          <figcaption>Crecimiento interanual de revenue: 1.36%. 81.84% de los viajes pagados con tarjeta.</figcaption>
-        </figure>
-      </div>
-
-      <ul class="findings">
-        <li>Modelo RandomForestRegressor predice propina por viaje con RMSE de $2.12 USD.</li>
-        <li>La hora pico de demanda es las 18:00 hrs, con 24,614 viajes registrados.</li>
-        <li>La hora más rentable por viaje es las 5:00 am, con $35 de tarifa promedio.</li>
-        <li>Carga masiva a PostgreSQL con <code>COPY FROM STDIN</code>: ~300,000 filas/segundo.</li>
+      <ul>
+        <li>Administración y análisis de datos en CRM, ERP y Dynamics 365.</li>
+        <li>Desarrollo de dashboards en Power BI para visualización de KPIs y monitoreo de desempeño operativo.</li>
+        <li>Automatización de procesos internos mediante Power Automate, reduciendo tareas manuales repetitivas.</li>
+        <li>Diseño de flujos de información con SharePoint para mejorar trazabilidad y control documental.</li>
+        <li>Análisis de datos internos para identificación de oportunidades de mejora operativa.</li>
       </ul>
+    </div>
+  </section>
 
-      <div class="auto-list">
-        <div class="head">Automatización propuesta para uso continuo</div>
-        <div class="row"><span>Pipeline mensual (cron/Task Scheduler): descarga, limpieza y carga automática del nuevo mes</span><span>evita repetir el proceso a mano</span></div>
-        <div class="row"><span>Validaciones de calidad con alerta si superan un umbral de error</span><span>detecta problemas antes del dashboard</span></div>
-        <div class="row"><span>Refresco del dataset de Power BI vía su REST API tras la carga a PostgreSQL</span><span>dashboard siempre actualizado</span></div>
-        <div class="row"><span>Notificación por email/Slack al terminar el pipeline (éxito o error)</span><span>visibilidad sin revisar manualmente</span></div>
+  <section id="skills">
+    <span class="eyebrow">Stack</span>
+    <h2 class="h">Habilidades técnicas</h2>
+
+    <div class="skillblock">
+      <h4>Análisis / BI</h4>
+      <div class="pillrow">
+        <span>SQL avanzado</span><span>Power BI (DAX)</span><span>Excel avanzado (Power Query, VBA)</span><span>IBM Cognos Analytics</span>
+      </div>
+    </div>
+    <div class="skillblock">
+      <h4>Programación / Datos</h4>
+      <div class="pillrow">
+        <span>Python (pandas, scikit-learn)</span><span>Node.js + Express</span><span>Prisma ORM</span><span>PostgreSQL / MySQL</span><span>APIs REST</span>
+      </div>
+    </div>
+    <div class="skillblock">
+      <h4>Automatización / Empresarial</h4>
+      <div class="pillrow">
+        <span>Power Automate</span><span>SharePoint</span><span>Microsoft Dynamics 365</span><span>Azure AD</span><span>CRM / ERP</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <span class="eyebrow">Proyectos destacados</span>
+    <h2 class="h">Lo que he construido</h2>
+
+    <article class="project-card" id="taxi">
+      <div class="project-head">
+        <h3>NYC Taxi Analytics</h3>
+        <span class="status">Pipeline end-to-end · completado</span>
+      </div>
+      <p class="lede muted">Pipeline de portafolio sobre ~119M viajes reales de taxis amarillos de Nueva York (2022–2024): ingesta vía API, validación en Excel, limpieza y modelo de Machine Learning en Python, modelado relacional en PostgreSQL y dashboard ejecutivo en Power BI.</p>
+
+      <div class="quickfacts">
+        <span>119M registros analizados</span>
+        <span>26.7M filas en PostgreSQL</span>
+        <span>Dashboard ejecutivo en Power BI</span>
+        <span>Modelo ML de propinas</span>
       </div>
 
       <div class="links-row">
@@ -327,22 +343,65 @@
         <a href="https://github.com/Josss180M/nyc-taxi-analytics/raw/master/02_excel_power_query/nyc_taxi_profiling.xlsm" target="_blank" rel="noopener">Descargar Excel (Power Query) ↓</a>
         <a href="https://github.com/Josss180M/nyc-taxi-analytics/raw/master/data/processed/fact_trips_pbi.csv" target="_blank" rel="noopener">Descargar dataset de Power BI (CSV) ↓</a>
       </div>
-    </section>
 
-    <section id="cocina">
-      <div class="stub"><span class="num">PROYECTO 02</span><h2>Cocina MVP — Backend</h2></div>
+      <details class="techdetails">
+        <summary>Ver detalle técnico: pipeline, capturas y hallazgos</summary>
+        <div class="techdetails-body">
+
+          <div class="route">
+            <div class="stop"><span class="stopnum">01</span><div class="stopname">API REST</div><span class="stopstate">Completado</span></div>
+            <div class="stop"><span class="stopnum">02</span><div class="stopname">Excel + Power Query</div><span class="stopstate">Completado</span></div>
+            <div class="stop"><span class="stopnum">03</span><div class="stopname">Python EDA + ML</div><span class="stopstate">Completado</span></div>
+            <div class="stop"><span class="stopnum">04</span><div class="stopname">PostgreSQL</div><span class="stopstate">Completado</span></div>
+            <div class="stop"><span class="stopnum">05</span><div class="stopname">Power BI</div><span class="stopstate">Completado</span></div>
+          </div>
+
+          <div class="meters">
+            <div class="meter-tile"><span class="stat-value mono" data-target="119" data-suffix="M">0</span><span class="stat-label">registros reales procesados</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="26.7" data-decimals="1" data-suffix="M">0</span><span class="stat-label">filas cargadas en PostgreSQL</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="1.28" data-decimals="2" data-prefix="$" data-suffix="M">0</span><span class="stat-label">revenue generado en JFK Airport</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="0.67" data-decimals="2">0</span><span class="stat-label">R² del modelo de propinas (RandomForest)</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="80" data-suffix="%">0</span><span class="stat-label">de los pagos son con tarjeta</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="88" data-suffix="%">0</span><span class="stat-label">del volumen de viajes es en Manhattan</span></div>
+          </div>
+
+          <p class="lede small muted">Capturas reales del reporte de Power BI (modelo cargado con una muestra de 810,000 viajes vía PostgreSQL):</p>
+          <div class="shots">
+            <figure class="shot">
+              <div class="tab">Overview</div>
+              <img src="assets/img/powerbi-overview.png" alt="Dashboard de Power BI, página Overview: KPIs de Total Revenue, Total Trips, Avg Fare y Avg Tip %, tendencia mensual de revenue y distribución por tipo de pago" width="1512" height="853" loading="lazy">
+              <figcaption>$14.53M en revenue, 810K viajes, tarifa promedio $17.94, 21% de propina promedio.</figcaption>
+            </figure>
+            <figure class="shot">
+              <div class="tab">Revenue Analysis</div>
+              <img src="assets/img/powerbi-revenue-analysis.png" alt="Dashboard de Power BI, página Revenue Analysis: revenue por año, tabla de rate codes, gauge de tarifa promedio contra meta y dispersión de tarifa vs distancia" width="1517" height="849" loading="lazy">
+              <figcaption>Crecimiento interanual de revenue: 1.36%. 81.84% de los viajes pagados con tarjeta.</figcaption>
+            </figure>
+          </div>
+
+          <ul class="findings">
+            <li>Modelo RandomForestRegressor predice propina por viaje con RMSE de $2.12 USD.</li>
+            <li>La hora pico de demanda es las 18:00 hrs, con 24,614 viajes registrados.</li>
+            <li>La hora más rentable por viaje es las 5:00 am, con $35 de tarifa promedio.</li>
+            <li>Carga masiva a PostgreSQL con <code>COPY FROM STDIN</code>: ~300,000 filas/segundo.</li>
+          </ul>
+
+        </div>
+      </details>
+    </article>
+
+    <article class="project-card" id="cocina">
+      <div class="project-head">
+        <h3>Cocina MVP — Backend</h3>
+        <span class="status">API REST · en producción</span>
+      </div>
       <p class="lede muted">API REST para el sistema de gestión de cocina/restaurante de Odella: catálogo de platillos, ingredientes y extras, ciclo completo de pedidos con bitácora de pagos, tres roles de acceso y notificaciones a Microsoft Teams. Documentada con Swagger/OpenAPI y desplegada en Render.</p>
 
-      <div class="tag-row">
-        <span class="tag">Node.js 18</span>
-        <span class="tag">Express 5</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">Prisma ORM</span>
-        <span class="tag">JWT</span>
-        <span class="tag">Azure AD SSO</span>
-        <span class="tag">Microsoft Graph API</span>
-        <span class="tag">Helmet</span>
-        <span class="tag">Render</span>
+      <div class="quickfacts">
+        <span>Node.js + Express + PostgreSQL</span>
+        <span>3 roles de acceso</span>
+        <span>Login Microsoft/Azure AD</span>
+        <span>Notificaciones a Teams</span>
       </div>
 
       <p class="lede small muted">Capturas reales del panel de administración en producción:</p>
@@ -357,234 +416,162 @@
           <img src="assets/img/cocina/cocina-platillos.png" alt="Panel de Cocina MVP, pestaña Platillos: catálogo con precio, disponibilidad e íconos, con opciones de editar y eliminar" width="1879" height="907" loading="lazy">
           <figcaption>Catálogo del menú: precio, disponibilidad y edición en línea.</figcaption>
         </figure>
-        <figure class="shot">
-          <div class="tab">Editar platillo</div>
-          <img src="assets/img/cocina/cocina-editar-platillo.png" alt="Panel de Cocina MVP, formulario de edición de un platillo: nombre, descripción, precio, ingredientes opcionales gratis, imagen y disponibilidad" width="444" height="811" loading="lazy">
-          <figcaption>Formulario de edición: precio, imagen e ingredientes incluidos/gratis.</figcaption>
-        </figure>
-        <figure class="shot">
-          <div class="tab">Extras</div>
-          <img src="assets/img/cocina/cocina-extras.png" alt="Panel de Cocina MVP, pestaña Extras: catálogo de bebidas y postres con tamaños y sabores configurables" width="1888" height="907" loading="lazy">
-          <figcaption>Bebidas y postres con tamaños y sabores configurables por producto.</figcaption>
-        </figure>
       </div>
-
-      <p class="lede small">Modelo de datos (PostgreSQL vía Prisma):</p>
-      <div class="table-wrap">
-        <svg viewBox="0 0 920 380" role="img" aria-label="Diagrama entidad-relación: Usuario tiene muchos Pedido; cada Pedido tiene muchos PedidoItem y muchos PedidoPagoLog; Platillo se relaciona con Ingrediente mediante RelacionPlatilloIngrediente y con Extra mediante PlatilloExtra; Configuracion es independiente" style="min-width:760px; width:100%; height:auto; font-family:var(--font-mono);">
-          <defs>
-            <marker id="erArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6 Z" fill="var(--meter)"></path>
-            </marker>
-          </defs>
-
-          <line x1="180" y1="52" x2="278" y2="52" stroke="var(--meter)" stroke-width="1.5" marker-end="url(#erArrow)"></line>
-          <text x="200" y="42" font-size="11" fill="var(--meter)">1 : *</text>
-
-          <line x1="440" y1="44" x2="538" y2="32" stroke="var(--meter)" stroke-width="1.5" marker-end="url(#erArrow)"></line>
-          <text x="450" y="30" font-size="11" fill="var(--meter)">1 : *</text>
-
-          <line x1="440" y1="62" x2="538" y2="110" stroke="var(--meter)" stroke-width="1.5" marker-end="url(#erArrow)"></line>
-          <text x="450" y="92" font-size="11" fill="var(--meter)">1 : *</text>
-
-          <line x1="180" y1="242" x2="278" y2="242" stroke="var(--meter)" stroke-width="1.5"></line>
-          <text x="190" y="235" font-size="10.5" fill="var(--meter)">* : * — RelacionPlatilloIngrediente</text>
-
-          <line x1="170" y1="264" x2="278" y2="330" stroke="var(--meter)" stroke-width="1.5"></line>
-          <text x="185" y="295" font-size="10.5" fill="var(--meter)">* : * — PlatilloExtra</text>
-
-          <g>
-            <rect x="20" y="30" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
-            <text x="100" y="57" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Usuario</text>
-          </g>
-          <g>
-            <rect x="280" y="30" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
-            <text x="360" y="57" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Pedido</text>
-          </g>
-          <g>
-            <rect x="540" y="10" width="190" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
-            <text x="635" y="37" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">PedidoItem</text>
-          </g>
-          <g>
-            <rect x="540" y="90" width="210" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
-            <text x="645" y="117" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">PedidoPagoLog</text>
-          </g>
-          <g>
-            <rect x="20" y="220" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
-            <text x="100" y="247" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Platillo</text>
-          </g>
-          <g>
-            <rect x="280" y="220" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
-            <text x="360" y="247" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Ingrediente</text>
-          </g>
-          <g>
-            <rect x="280" y="308" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
-            <text x="360" y="335" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Extra</text>
-          </g>
-          <g>
-            <rect x="760" y="220" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2" stroke-dasharray="4 3"></rect>
-            <text x="840" y="243" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Configuracion</text>
-            <text x="840" y="279" font-size="10" fill="var(--slate)" text-anchor="middle">clave–valor, sin relaciones</text>
-          </g>
-        </svg>
-      </div>
-
-      <p class="lede small">Ciclo de vida de un pedido:</p>
-      <div class="statepath">
-        <span class="state">en_espera</span><span class="arrow">→</span>
-        <span class="state">en_preparación</span><span class="arrow">→</span>
-        <span class="state">listo</span><span class="arrow">→</span>
-        <span class="state pay">pagado</span>
-      </div>
-      <p class="lede small muted">Rutas alternas: <code>en_espera → en_revisión → en_espera</code> (el cliente corrige y reenvía) · <code>en_espera → cancelado</code>. Cada cambio de pago queda registrado en una bitácora de auditoría (<code>PedidoPagoLog</code>) dentro de la misma transacción.</p>
-
-      <p class="lede small" style="margin-top:1.3rem;">Matriz de permisos por rol:</p>
-      <div class="table-wrap">
-        <table class="matrix">
-          <thead>
-            <tr><th>Acción</th><th>Admin</th><th>Jefe de Cocina</th><th>Cliente</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Pedidos: listar / cambiar status / marcar pagado</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-            <tr><td>Reporte financiero (revenue, top items)</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-            <tr><td>Platillos / Ingredientes / Extras: crear, editar, eliminar</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-            <tr><td>Platillos / Ingredientes / Extras: solo activar/inactivar</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-            <tr><td>Gestión de usuarios</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-            <tr><td>Crear pedido / ver mis pedidos / cancelar</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <ul class="findings">
-        <li>Autenticación por correo/contraseña, login con Microsoft/Azure AD y SSO desde Microsoft Teams.</li>
-        <li>Permisos por campo: si el Jefe de Cocina envía un campo fuera de lo permitido, la API responde <code>403</code> en vez de aplicar el cambio a medias.</li>
-        <li>Rate limiting: 10 intentos de login por 15 min, 60 solicitudes por minuto por usuario autenticado.</li>
-        <li>El total de cada pedido se calcula en el servidor — nunca se confía en el monto enviado por el cliente.</li>
-        <li>Notificaciones a Teams vía Microsoft Graph API cuando cambia el estado de un pedido.</li>
-      </ul>
-
-      <p class="lede small muted">Esta API es consumida por un frontend en React (Vite, Tailwind, Framer Motion) desarrollado principalmente por un compañero de equipo.</p>
 
       <div class="links-row">
         <a href="https://github.com/Josss180M/Back_end" target="_blank" rel="noopener">Ver backend en GitHub ↗</a>
         <a href="https://github.com/Josss180M/Front_Cocina" target="_blank" rel="noopener">Ver frontend en GitHub ↗</a>
       </div>
-    </section>
 
-    <section id="experience">
-      <div class="stub"><span class="num">EXPERIENCIA</span><h2>Trayectoria</h2></div>
-      <div class="job">
-        <div class="jobhead">
-          <h3>TI Analyst — Odella, CDMX</h3>
-          <span class="dates mono">Marzo 2025 — Actualidad</span>
-        </div>
-        <ul>
-          <li>Administración y análisis de datos en CRM, ERP y Dynamics 365.</li>
-          <li>Desarrollo de dashboards en Power BI para visualización de KPIs y monitoreo de desempeño operativo.</li>
-          <li>Automatización de procesos internos mediante Power Automate, reduciendo tareas manuales repetitivas.</li>
-          <li>Diseño de flujos de información con SharePoint para mejorar trazabilidad y control documental.</li>
-          <li>Análisis de datos internos para identificación de oportunidades de mejora operativa.</li>
-        </ul>
-      </div>
-    </section>
+      <details class="techdetails">
+        <summary>Ver detalle técnico: modelo de datos, permisos y seguridad</summary>
+        <div class="techdetails-body">
 
-    <section id="projects">
-      <div class="stub"><span class="num">MÁS TRABAJO</span><h2>Otros proyectos</h2></div>
-      <div class="project">
-        <h3>Modelo Predictivo con Machine Learning</h3>
-        <ul>
-          <li>Modelo de clasificación en Python.</li>
-          <li>Limpieza, transformación y análisis exploratorio de datos (EDA).</li>
-          <li>Feature engineering y validación con métricas de desempeño.</li>
-        </ul>
-        <span class="stack">Python · pandas · scikit-learn · SQL</span>
-      </div>
-    </section>
+          <div class="shots">
+            <figure class="shot">
+              <div class="tab">Editar platillo</div>
+              <img src="assets/img/cocina/cocina-editar-platillo.png" alt="Panel de Cocina MVP, formulario de edición de un platillo: nombre, descripción, precio, ingredientes opcionales gratis, imagen y disponibilidad" width="444" height="811" loading="lazy">
+              <figcaption>Formulario de edición: precio, imagen e ingredientes incluidos/gratis.</figcaption>
+            </figure>
+            <figure class="shot">
+              <div class="tab">Extras</div>
+              <img src="assets/img/cocina/cocina-extras.png" alt="Panel de Cocina MVP, pestaña Extras: catálogo de bebidas y postres con tamaños y sabores configurables" width="1888" height="907" loading="lazy">
+              <figcaption>Bebidas y postres con tamaños y sabores configurables por producto.</figcaption>
+            </figure>
+          </div>
 
-    <section id="skills">
-      <div class="stub"><span class="num">STACK</span><h2>Habilidades técnicas</h2></div>
-      <div class="skillgrid">
-        <div class="skillgroup">
-          <h4>Análisis / BI</h4>
-          <ul>
-            <li>SQL avanzado (joins, agregaciones, modelado)</li>
-            <li>Power BI (modelado de datos, DAX)</li>
-            <li>Excel avanzado (Power Query, VBA)</li>
-            <li>IBM Cognos Analytics</li>
+          <p class="lede small" style="margin-top:1.2rem;">Modelo de datos (PostgreSQL vía Prisma):</p>
+          <div class="table-wrap">
+            <svg viewBox="0 0 920 380" role="img" aria-label="Diagrama entidad-relación: Usuario tiene muchos Pedido; cada Pedido tiene muchos PedidoItem y muchos PedidoPagoLog; Platillo se relaciona con Ingrediente mediante RelacionPlatilloIngrediente y con Extra mediante PlatilloExtra; Configuracion es independiente" style="min-width:760px; width:100%; height:auto; font-family:var(--font-mono);">
+              <defs>
+                <marker id="erArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="var(--meter)"></path>
+                </marker>
+              </defs>
+              <line x1="180" y1="52" x2="278" y2="52" stroke="var(--meter)" stroke-width="1.5" marker-end="url(#erArrow)"></line>
+              <text x="200" y="42" font-size="11" fill="var(--meter)">1 : *</text>
+              <line x1="440" y1="44" x2="538" y2="32" stroke="var(--meter)" stroke-width="1.5" marker-end="url(#erArrow)"></line>
+              <text x="450" y="30" font-size="11" fill="var(--meter)">1 : *</text>
+              <line x1="440" y1="62" x2="538" y2="110" stroke="var(--meter)" stroke-width="1.5" marker-end="url(#erArrow)"></line>
+              <text x="450" y="92" font-size="11" fill="var(--meter)">1 : *</text>
+              <line x1="180" y1="242" x2="278" y2="242" stroke="var(--meter)" stroke-width="1.5"></line>
+              <text x="190" y="235" font-size="10.5" fill="var(--meter)">* : * — RelacionPlatilloIngrediente</text>
+              <line x1="170" y1="264" x2="278" y2="330" stroke="var(--meter)" stroke-width="1.5"></line>
+              <text x="185" y="295" font-size="10.5" fill="var(--meter)">* : * — PlatilloExtra</text>
+              <g>
+                <rect x="20" y="30" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
+                <text x="100" y="57" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Usuario</text>
+              </g>
+              <g>
+                <rect x="280" y="30" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
+                <text x="360" y="57" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Pedido</text>
+              </g>
+              <g>
+                <rect x="540" y="10" width="190" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
+                <text x="635" y="37" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">PedidoItem</text>
+              </g>
+              <g>
+                <rect x="540" y="90" width="210" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
+                <text x="645" y="117" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">PedidoPagoLog</text>
+              </g>
+              <g>
+                <rect x="20" y="220" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
+                <text x="100" y="247" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Platillo</text>
+              </g>
+              <g>
+                <rect x="280" y="220" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
+                <text x="360" y="247" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Ingrediente</text>
+              </g>
+              <g>
+                <rect x="280" y="308" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2"></rect>
+                <text x="360" y="335" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Extra</text>
+              </g>
+              <g>
+                <rect x="760" y="220" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2" stroke-dasharray="4 3"></rect>
+                <text x="840" y="243" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Configuracion</text>
+                <text x="840" y="279" font-size="10" fill="var(--slate)" text-anchor="middle">clave–valor, sin relaciones</text>
+              </g>
+            </svg>
+          </div>
+
+          <p class="lede small">Ciclo de vida de un pedido:</p>
+          <div class="statepath">
+            <span class="state">en_espera</span><span class="arrow">→</span>
+            <span class="state">en_preparación</span><span class="arrow">→</span>
+            <span class="state">listo</span><span class="arrow">→</span>
+            <span class="state pay">pagado</span>
+          </div>
+          <p class="lede small muted">Rutas alternas: <code>en_espera → en_revisión → en_espera</code> (el cliente corrige y reenvía) · <code>en_espera → cancelado</code>. Cada cambio de pago queda registrado en una bitácora de auditoría (<code>PedidoPagoLog</code>) dentro de la misma transacción.</p>
+
+          <p class="lede small" style="margin-top:1.2rem;">Matriz de permisos por rol:</p>
+          <div class="table-wrap">
+            <table class="matrix">
+              <thead>
+                <tr><th>Acción</th><th>Admin</th><th>Jefe de Cocina</th><th>Cliente</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Pedidos: listar / cambiar status / marcar pagado</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
+                <tr><td>Reporte financiero (revenue, top items)</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+                <tr><td>Platillos / Ingredientes / Extras: crear, editar, eliminar</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+                <tr><td>Platillos / Ingredientes / Extras: solo activar/inactivar</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
+                <tr><td>Gestión de usuarios</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+                <tr><td>Crear pedido / ver mis pedidos / cancelar</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul class="findings">
+            <li>Autenticación por correo/contraseña, login con Microsoft/Azure AD y SSO desde Microsoft Teams.</li>
+            <li>Permisos por campo: si el Jefe de Cocina envía un campo fuera de lo permitido, la API responde <code>403</code> en vez de aplicar el cambio a medias.</li>
+            <li>Rate limiting: 10 intentos de login por 15 min, 60 solicitudes por minuto por usuario autenticado.</li>
+            <li>El total de cada pedido se calcula en el servidor — nunca se confía en el monto enviado por el cliente.</li>
+            <li>Notificaciones a Teams vía Microsoft Graph API cuando cambia el estado de un pedido.</li>
           </ul>
-        </div>
-        <div class="skillgroup">
-          <h4>Programación / Datos</h4>
-          <ul>
-            <li>Python (pandas, scikit-learn)</li>
-            <li>Node.js + Express, Prisma ORM</li>
-            <li>PostgreSQL / MySQL</li>
-            <li>Diseño de APIs REST</li>
-          </ul>
-        </div>
-        <div class="skillgroup">
-          <h4>Automatización / Empresarial</h4>
-          <ul>
-            <li>Power Automate</li>
-            <li>SharePoint</li>
-            <li>Microsoft Dynamics 365 / Azure AD</li>
-            <li>CRM / ERP</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <section id="education">
-      <div class="stub"><span class="num">FORMACIÓN</span><h2>Educación y certificaciones</h2></div>
-      <div class="edu-row"><span class="school">Ingeniería en Sistemas Computacionales — UVEG (Titulado)</span><span class="years mono">2025</span></div>
-      <div class="edu-row"><span class="school">Ingeniería Industrial — IPN UPIICSA</span><span class="years mono">2018–2020</span></div>
-      <div class="certs">
-        <div class="cert"><strong>IBM Data Analyst Professional Certificate</strong> — Coursera, 2025</div>
-        <div class="cert"><strong>Microsoft Azure Fundamentals</strong></div>
-        <div class="cert">Inglés — nivel B2</div>
-      </div>
-    </section>
+          <p class="lede small muted" style="margin-top:1.2rem;">Esta API es consumida por un frontend en React (Vite, Tailwind, Framer Motion) desarrollado principalmente por un compañero de equipo.</p>
+        </div>
+      </details>
+    </article>
 
-    <footer id="contact">
-      <span>Joshue Moreno — Ecatepec de Morelos, Edo. Méx.</span>
-      <span>joshuemoreno612@gmail.com · linkedin.com/in/joshue-moreno-3279692b3 · github.com/Josss180M</span>
-    </footer>
+    <article class="minicard">
+      <h3>Modelo Predictivo con Machine Learning</h3>
+      <ul>
+        <li>Modelo de clasificación en Python.</li>
+        <li>Limpieza, transformación y análisis exploratorio de datos (EDA).</li>
+        <li>Feature engineering y validación con métricas de desempeño.</li>
+      </ul>
+      <span class="stack">Python · pandas · scikit-learn · SQL</span>
+    </article>
+  </section>
 
-  </main>
-</div>
+  <section id="education">
+    <span class="eyebrow">Formación</span>
+    <h2 class="h">Educación y certificaciones</h2>
+    <div class="edu-row"><span class="school">Ingeniería en Sistemas Computacionales — UVEG (Titulado)</span><span class="years mono">2025</span></div>
+    <div class="edu-row"><span class="school">Ingeniería Industrial — IPN UPIICSA</span><span class="years mono">2018–2020</span></div>
+    <div class="certs">
+      <div class="cert"><strong>IBM Data Analyst Professional Certificate</strong> — Coursera, 2025</div>
+      <div class="cert"><strong>Microsoft Azure Fundamentals</strong></div>
+      <div class="cert">Inglés — nivel B2</div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <span>Joshue Moreno — Ecatepec de Morelos, Edo. Méx.</span>
+    <span>joshuemoreno612@gmail.com · linkedin.com/in/joshue-moreno-3279692b3 · github.com/Josss180M</span>
+  </footer>
+
+</main>
 
 <script>
   (function(){
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var stats = document.querySelectorAll('.stat-value');
-
-    function format(el, value){
+    document.querySelectorAll('.stat-value').forEach(function(el){
+      var target = parseFloat(el.getAttribute('data-target'));
       var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
       var prefix = el.getAttribute('data-prefix') || '';
       var suffix = el.getAttribute('data-suffix') || '';
-      return prefix + value.toFixed(decimals) + suffix;
-    }
-
-    stats.forEach(function(el){
-      var target = parseFloat(el.getAttribute('data-target'));
-      el.textContent = format(el, target);
-      if (reduced) return;
-      var start = null;
-      var duration = 800;
-      function step(now){
-        if (start === null) start = now;
-        var p = Math.min(1, (now - start) / duration);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = format(el, target * eased);
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = format(el, target);
-      }
-      requestAnimationFrame(step);
+      el.textContent = prefix + target.toFixed(decimals) + suffix;
     });
-
-    if (!reduced){
-      document.querySelectorAll('section').forEach(function(s){ s.classList.add('reveal'); });
-    }
   })();
 </script>
 </body>
