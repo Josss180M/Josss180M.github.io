@@ -190,7 +190,16 @@
   .shots{display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; margin:1.6rem 0;}
   .shot{background:var(--paper-raised); border:1px solid rgba(var(--line),var(--line-alpha)); padding:.5rem;}
   .shot .tab{font-family:var(--font-mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.05em; color:var(--meter); padding:.3rem .1rem .5rem;}
-  .shot img{display:block; width:100%; height:auto; border:1px solid rgba(var(--line),var(--line-alpha));}
+  .shot .zoomlink{position:relative; display:block; cursor:zoom-in;}
+  .shot .zoomlink img{display:block; width:100%; height:auto; border:1px solid rgba(var(--line),var(--line-alpha));}
+  .shot .zoomlink .zoomhint{
+    position:absolute; top:.5rem; right:.5rem;
+    font-family:var(--font-mono); font-size:.68rem;
+    background:rgba(0,0,0,.62); color:#fff;
+    padding:.3rem .55rem; border-radius:999px;
+    opacity:0; transition:opacity .15s ease;
+  }
+  .shot .zoomlink:hover .zoomhint, .shot .zoomlink:focus-visible .zoomhint{opacity:1;}
   .shot figcaption{font-size:.76rem; color:var(--slate); margin-top:.5rem; line-height:1.4;}
   @media (max-width:640px){ .shots{grid-template-columns:1fr;} }
 
@@ -303,7 +312,7 @@
     <div class="skillblock">
       <h4>Análisis / BI</h4>
       <div class="pillrow">
-        <span>SQL avanzado</span><span>Power BI (DAX)</span><span>Excel avanzado (Power Query, VBA)</span><span>IBM Cognos Analytics</span>
+        <span>SQL avanzado</span><span>Power BI (DAX)</span><span>Excel avanzado (Power Query, VBA)</span>
       </div>
     </div>
     <div class="skillblock">
@@ -369,12 +378,18 @@
           <div class="shots">
             <figure class="shot">
               <div class="tab">Overview</div>
-              <img src="assets/img/powerbi-overview.png" alt="Dashboard de Power BI, página Overview: KPIs de Total Revenue, Total Trips, Avg Fare y Avg Tip %, tendencia mensual de revenue y distribución por tipo de pago" width="1512" height="853" loading="lazy">
+              <a class="zoomlink" href="assets/img/powerbi-overview.png" target="_blank" rel="noopener">
+                <img src="assets/img/powerbi-overview.png" alt="Dashboard de Power BI, página Overview: KPIs de Total Revenue, Total Trips, Avg Fare y Avg Tip %, tendencia mensual de revenue y distribución por tipo de pago" width="1512" height="853" loading="lazy">
+                <span class="zoomhint">Ver tamaño completo ↗</span>
+              </a>
               <figcaption>$14.53M en revenue, 810K viajes, tarifa promedio $17.94, 21% de propina promedio.</figcaption>
             </figure>
             <figure class="shot">
               <div class="tab">Revenue Analysis</div>
-              <img src="assets/img/powerbi-revenue-analysis.png" alt="Dashboard de Power BI, página Revenue Analysis: revenue por año, tabla de rate codes, gauge de tarifa promedio contra meta y dispersión de tarifa vs distancia" width="1517" height="849" loading="lazy">
+              <a class="zoomlink" href="assets/img/powerbi-revenue-analysis.png" target="_blank" rel="noopener">
+                <img src="assets/img/powerbi-revenue-analysis.png" alt="Dashboard de Power BI, página Revenue Analysis: revenue por año, tabla de rate codes, gauge de tarifa promedio contra meta y dispersión de tarifa vs distancia" width="1517" height="849" loading="lazy">
+                <span class="zoomhint">Ver tamaño completo ↗</span>
+              </a>
               <figcaption>Crecimiento interanual de revenue: 1.36%. 81.84% de los viajes pagados con tarjeta.</figcaption>
             </figure>
           </div>
@@ -395,7 +410,7 @@
         <h3>Cocina MVP — Backend</h3>
         <span class="status">API REST · en producción</span>
       </div>
-      <p class="lede muted">API REST para el sistema de gestión de cocina/restaurante de Odella: catálogo de platillos, ingredientes y extras, ciclo completo de pedidos con bitácora de pagos, tres roles de acceso y notificaciones a Microsoft Teams. Documentada con Swagger/OpenAPI y desplegada en Render.</p>
+      <p class="lede muted">Proyecto solicitado internamente por Odella para digitalizar la operación de su cocina/restaurante. Construí la API REST: catálogo de platillos, ingredientes y extras, ciclo completo de pedidos con bitácora de pagos, tres roles de acceso y notificaciones a Microsoft Teams. Documentada con Swagger/OpenAPI y desplegada en Render.</p>
 
       <div class="quickfacts">
         <span>Node.js + Express + PostgreSQL</span>
@@ -408,12 +423,18 @@
       <div class="shots">
         <figure class="shot">
           <div class="tab">Pedidos</div>
-          <img src="assets/img/cocina/cocina-pedidos.png" alt="Panel de Cocina MVP, pestaña Pedidos: tablero en vivo con columnas En espera, En preparación y Listos, tarjetas con nota, cambio de estado y cobro" width="1888" height="910" loading="lazy">
+          <a class="zoomlink" href="assets/img/cocina/cocina-pedidos.png" target="_blank" rel="noopener">
+            <img src="assets/img/cocina/cocina-pedidos.png" alt="Panel de Cocina MVP, pestaña Pedidos: tablero en vivo con columnas En espera, En preparación y Listos, tarjetas con nota, cambio de estado y cobro" width="1888" height="910" loading="lazy">
+            <span class="zoomhint">Ver tamaño completo ↗</span>
+          </a>
           <figcaption>Tablero en vivo (refresca cada 5s): estado, notas y cobro por pedido.</figcaption>
         </figure>
         <figure class="shot">
           <div class="tab">Platillos</div>
-          <img src="assets/img/cocina/cocina-platillos.png" alt="Panel de Cocina MVP, pestaña Platillos: catálogo con precio, disponibilidad e íconos, con opciones de editar y eliminar" width="1879" height="907" loading="lazy">
+          <a class="zoomlink" href="assets/img/cocina/cocina-platillos.png" target="_blank" rel="noopener">
+            <img src="assets/img/cocina/cocina-platillos.png" alt="Panel de Cocina MVP, pestaña Platillos: catálogo con precio, disponibilidad e íconos, con opciones de editar y eliminar" width="1879" height="907" loading="lazy">
+            <span class="zoomhint">Ver tamaño completo ↗</span>
+          </a>
           <figcaption>Catálogo del menú: precio, disponibilidad y edición en línea.</figcaption>
         </figure>
       </div>
@@ -430,12 +451,18 @@
           <div class="shots">
             <figure class="shot">
               <div class="tab">Editar platillo</div>
-              <img src="assets/img/cocina/cocina-editar-platillo.png" alt="Panel de Cocina MVP, formulario de edición de un platillo: nombre, descripción, precio, ingredientes opcionales gratis, imagen y disponibilidad" width="444" height="811" loading="lazy">
+              <a class="zoomlink" href="assets/img/cocina/cocina-editar-platillo.png" target="_blank" rel="noopener">
+                <img src="assets/img/cocina/cocina-editar-platillo.png" alt="Panel de Cocina MVP, formulario de edición de un platillo: nombre, descripción, precio, ingredientes opcionales gratis, imagen y disponibilidad" width="444" height="811" loading="lazy">
+                <span class="zoomhint">Ver tamaño completo ↗</span>
+              </a>
               <figcaption>Formulario de edición: precio, imagen e ingredientes incluidos/gratis.</figcaption>
             </figure>
             <figure class="shot">
               <div class="tab">Extras</div>
-              <img src="assets/img/cocina/cocina-extras.png" alt="Panel de Cocina MVP, pestaña Extras: catálogo de bebidas y postres con tamaños y sabores configurables" width="1888" height="907" loading="lazy">
+              <a class="zoomlink" href="assets/img/cocina/cocina-extras.png" target="_blank" rel="noopener">
+                <img src="assets/img/cocina/cocina-extras.png" alt="Panel de Cocina MVP, pestaña Extras: catálogo de bebidas y postres con tamaños y sabores configurables" width="1888" height="907" loading="lazy">
+                <span class="zoomhint">Ver tamaño completo ↗</span>
+              </a>
               <figcaption>Bebidas y postres con tamaños y sabores configurables por producto.</figcaption>
             </figure>
           </div>
