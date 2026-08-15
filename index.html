@@ -582,13 +582,33 @@
         <h3>Automatización de Aprobaciones — Power Automate</h3>
         <span class="status">Flujo en producción · Odella</span>
       </div>
-      <p class="lede muted">Flujo de aprobación construido en Power Automate para un proceso interno de Odella: se dispara al cambiar el estado de una solicitud en una lista de SharePoint, evalúa ese estado y notifica automáticamente por correo y Microsoft Teams — sin que nadie tenga que revisar manualmente cada solicitud.</p>
+      <p class="lede muted">Flujo de aprobación construido en Power Automate para el proceso de solicitudes de diseño de Odella: se dispara al cambiar el estado de una solicitud en una lista de SharePoint, evalúa ese estado y notifica automáticamente por correo y Microsoft Teams — sin que nadie tenga que revisar manualmente cada solicitud. También construí el dashboard de Power BI que reporta el volumen y desempeño de esas solicitudes.</p>
 
       <div class="quickfacts">
         <span>Trigger: cambio de item en SharePoint</span>
         <span>Switch por estado de aprobación</span>
         <span>Notificaciones por correo y Teams</span>
-        <span>SharePoint como bitácora de auditoría</span>
+        <span>Dashboard de Power BI</span>
+      </div>
+
+      <p class="lede small muted">Capturas reales del sitio y el reporte (nombres del personal cubiertos por privacidad):</p>
+      <div class="shots">
+        <figure class="shot">
+          <div class="tab">KPIs de solicitudes</div>
+          <a class="zoomlink" href="assets/img/automate/solicitudes-kpis-redacted.png" target="_blank" rel="noopener">
+            <img src="assets/img/automate/solicitudes-kpis-redacted.png" alt="Dashboard de Power BI embebido en SharePoint: solicitudes recibidas, entregadas, con retraso, prioridad dominante, solicitudes por mes y demanda por categoría de producto" width="1089" height="619" loading="lazy">
+            <span class="zoomhint">Ver tamaño completo ↗</span>
+          </a>
+          <figcaption>1,640 solicitudes recibidas, 1,427 entregadas, 16% con retraso. Inyectables/Quirúrgicos concentra la mayor demanda de diseño.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="tab">Sitio de SharePoint</div>
+          <a class="zoomlink" href="assets/img/automate/solicitudes-categorias.png" target="_blank" rel="noopener">
+            <img src="assets/img/automate/solicitudes-categorias.png" alt="Sitio de SharePoint 'Solicitudes de diseño' con navegación por categoría de producto: Dermo-Cosmeto Beauty, Capilares y Suplementos, Equipos médicos, Ginecológicos, Diseño industrial" width="1734" height="682" loading="lazy">
+            <span class="zoomhint">Ver tamaño completo ↗</span>
+          </a>
+          <figcaption>Portal donde el equipo de diseño da seguimiento a cada solicitud por categoría de producto.</figcaption>
+        </figure>
       </div>
 
       <p class="lede small">Lógica del flujo:</p>
@@ -606,7 +626,7 @@
         <li>Las notificaciones cambian de texto y destinatario según la rama que se dispare, no es un solo correo genérico.</li>
       </ul>
 
-      <p class="lede small muted" style="margin-top:1rem;">Por confidencialidad no comparto el flujo exportado ni capturas del sitio real — el diagrama de arriba describe la lógica, no es una captura.</p>
+      <p class="lede small muted" style="margin-top:1rem;">Por confidencialidad no comparto el flujo exportado (trae IDs internos de la nube de Odella) — el diagrama de arriba describe la lógica, no es una captura del flujo.</p>
     </article>
 
     <article class="minicard">
