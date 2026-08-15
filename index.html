@@ -577,6 +577,38 @@
       </details>
     </article>
 
+    <article class="project-card" id="automate">
+      <div class="project-head">
+        <h3>Automatización de Aprobaciones — Power Automate</h3>
+        <span class="status">Flujo en producción · Odella</span>
+      </div>
+      <p class="lede muted">Flujo de aprobación construido en Power Automate para un proceso interno de Odella: se dispara al cambiar el estado de una solicitud en una lista de SharePoint, evalúa ese estado y notifica automáticamente por correo y Microsoft Teams — sin que nadie tenga que revisar manualmente cada solicitud.</p>
+
+      <div class="quickfacts">
+        <span>Trigger: cambio de item en SharePoint</span>
+        <span>Switch por estado de aprobación</span>
+        <span>Notificaciones por correo y Teams</span>
+        <span>SharePoint como bitácora de auditoría</span>
+      </div>
+
+      <p class="lede small">Lógica del flujo:</p>
+      <div class="statepath">
+        <span class="state">cambio detectado</span><span class="arrow">→</span>
+        <span class="state">evaluar estado</span><span class="arrow">→</span>
+        <span class="state">notificar (correo/Teams)</span><span class="arrow">→</span>
+        <span class="state pay">actualizar registro</span>
+      </div>
+      <p class="lede small muted">Ramas según el estado evaluado: <code>rechazado</code> → crea una nueva solicitud de ajuste y notifica a quien la pidió · <code>solicitado</code> → notifica a quien debe revisarla · <code>aceptado</code> → marca el registro como entregado y notifica al interesado.</p>
+
+      <ul class="findings">
+        <li>Mismo patrón de máquina de estados que el ciclo de vida de un pedido en Cocina MVP, aquí orquestado sin código.</li>
+        <li>La propia lista de SharePoint funciona como bitácora — cada cambio de estado queda registrado con fecha, sin necesitar una base de datos aparte.</li>
+        <li>Las notificaciones cambian de texto y destinatario según la rama que se dispare, no es un solo correo genérico.</li>
+      </ul>
+
+      <p class="lede small muted" style="margin-top:1rem;">Por confidencialidad no comparto el flujo exportado ni capturas del sitio real — el diagrama de arriba describe la lógica, no es una captura.</p>
+    </article>
+
     <article class="minicard">
       <h3>Modelo Predictivo con Machine Learning</h3>
       <ul>
