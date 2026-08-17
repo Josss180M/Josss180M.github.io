@@ -68,11 +68,13 @@
     border-bottom:1px solid rgba(var(--line),var(--line-alpha));
   }
   .topbar-inner{
-    max-width:840px; margin:0 auto; padding:0 1.6rem;
-    display:flex; align-items:center; justify-content:space-between; gap:1rem;
-    height:3.6rem;
+    max-width:1100px; margin:0 auto; padding:.5rem 1.6rem;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:.6rem; row-gap:.4rem; flex-wrap:wrap;
+    min-height:3.6rem;
   }
-  .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none;}
+  .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; flex-shrink:0;}
+  .brand .name{white-space:nowrap;}
   .brand .mark{
     display:inline-flex; align-items:center; justify-content:center;
     width:1.9rem; height:1.9rem; background:var(--yellow); color:#fff;
@@ -84,16 +86,28 @@
   nav.toplinks{display:flex; gap:1.4rem;}
   nav.toplinks a{font-size:.85rem; text-decoration:none; color:var(--slate);}
   nav.toplinks a:hover{color:var(--meter);}
-  @media (max-width:680px){ nav.toplinks{display:none;} }
+  @media (max-width:860px){ nav.toplinks{display:none;} }
+  .lang-group{display:flex; align-items:center; gap:.5rem;}
+  .lang-label{
+    font-family:var(--font-mono); font-size:.72rem; font-weight:700;
+    color:var(--slate); text-transform:uppercase; letter-spacing:.04em;
+    white-space:nowrap;
+  }
+  @media (max-width:560px){ .lang-label{display:none;} }
   .lang-btn{
     font-family:var(--font-mono); font-size:.82rem; font-weight:800;
     padding:.55rem 1rem; border:2px solid var(--yellow);
     border-radius:999px; background:var(--yellow); color:#fff;
-    cursor:pointer; letter-spacing:.04em;
+    cursor:pointer; letter-spacing:.02em; white-space:nowrap;
     display:inline-flex; align-items:center; gap:.4rem;
   }
   .lang-btn:hover{background:var(--meter); border-color:var(--meter);}
   .lang-btn:focus-visible{outline:2px solid var(--meter); outline-offset:2px;}
+  @media (max-width:420px){
+    .topbar-inner{padding:0 1rem; gap:.5rem;}
+    .brand .name{font-size:.85rem;}
+    .lang-btn{font-size:.68rem; padding:.4rem .6rem; gap:.25rem;}
+  }
 
   section{padding:3.2rem 0; scroll-margin-top:4rem;}
   section + section{border-top:1px solid rgba(var(--line),var(--line-alpha));}
@@ -286,7 +300,10 @@
         <a href="#education" data-es="Formación" data-en="Education">Formación</a>
         <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
       </nav>
-      <button id="langBtn" class="lang-btn" type="button" aria-label="Switch language / Cambiar idioma">🌐 <span id="langBtnText">EN</span></button>
+      <div class="lang-group">
+        <span class="lang-label" data-es="Idioma /" data-en="Language /">Idioma /</span>
+        <button id="langBtn" class="lang-btn" type="button" aria-label="Switch language / Cambiar idioma">🌐 <span id="langBtnText">Ver en inglés</span></button>
+      </div>
     </div>
   </div>
 </div>
@@ -713,7 +730,7 @@
       }
 
       var btnText = document.getElementById('langBtnText');
-      if (btnText) btnText.textContent = (lang === 'es') ? 'EN' : 'ES';
+      if (btnText) btnText.textContent = (lang === 'es') ? 'Ver en inglés' : 'View in Spanish';
 
       try { localStorage.setItem(KEY, lang); } catch (e) {}
     }
@@ -726,7 +743,7 @@
       applyLang('en');
     } else {
       var btnText = document.getElementById('langBtnText');
-      if (btnText) btnText.textContent = 'EN';
+      if (btnText) btnText.textContent = 'Ver en inglés';
     }
 
     document.getElementById('langBtn').addEventListener('click', function(){
