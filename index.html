@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Joshue Moreno — Data Analyst</title>
-<meta name="description" content="Portafolio de Joshue Moreno: Data Analyst especializado en SQL, Power BI y Python. Proyectos: NYC Taxi Analytics (pipeline end-to-end) y Cocina MVP (backend Node.js/PostgreSQL).">
+<meta id="metaDesc" name="description" content="Portafolio de Joshue Moreno: Data Analyst especializado en SQL, Power BI y Python. Proyectos: NYC Taxi Analytics (pipeline end-to-end) y Cocina MVP (backend Node.js/PostgreSQL)." data-desc-es="Portafolio de Joshue Moreno: Data Analyst especializado en SQL, Power BI y Python. Proyectos: NYC Taxi Analytics (pipeline end-to-end) y Cocina MVP (backend Node.js/PostgreSQL)." data-desc-en="Joshue Moreno's portfolio: Data Analyst specialized in SQL, Power BI and Python. Projects: NYC Taxi Analytics (end-to-end pipeline) and Cocina MVP (Node.js/PostgreSQL backend).">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%95%3C/text%3E%3C/svg%3E">
 <style>
@@ -80,10 +80,18 @@
     border-radius:var(--radius);
   }
   .brand .name{font-weight:700; font-size:.95rem;}
+  .topnav-right{display:flex; align-items:center; gap:1.1rem;}
   nav.toplinks{display:flex; gap:1.4rem;}
   nav.toplinks a{font-size:.85rem; text-decoration:none; color:var(--slate);}
   nav.toplinks a:hover{color:var(--meter);}
   @media (max-width:680px){ nav.toplinks{display:none;} }
+  .lang-btn{
+    font-family:var(--font-mono); font-size:.72rem; font-weight:700;
+    padding:.35rem .7rem; border:1px solid rgba(var(--line),var(--line-alpha));
+    border-radius:999px; background:var(--paper-raised); color:var(--ink);
+    cursor:pointer; letter-spacing:.03em;
+  }
+  .lang-btn:hover{border-color:var(--meter); color:var(--meter);}
 
   section{padding:3.2rem 0; scroll-margin-top:4rem;}
   section + section{border-top:1px solid rgba(var(--line),var(--line-alpha));}
@@ -267,14 +275,17 @@
       <span class="mark">JM</span>
       <span class="name">Joshue Moreno</span>
     </a>
-    <nav class="toplinks">
-      <a href="#about">Perfil</a>
-      <a href="#experience">Experiencia</a>
-      <a href="#skills">Habilidades</a>
-      <a href="#projects">Proyectos</a>
-      <a href="#education">Formación</a>
-      <a href="#contact">Contacto</a>
-    </nav>
+    <div class="topnav-right">
+      <nav class="toplinks">
+        <a href="#about" data-es="Perfil" data-en="Profile">Perfil</a>
+        <a href="#experience" data-es="Experiencia" data-en="Experience">Experiencia</a>
+        <a href="#skills" data-es="Habilidades" data-en="Skills">Habilidades</a>
+        <a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a>
+        <a href="#education" data-es="Formación" data-en="Education">Formación</a>
+        <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
+      </nav>
+      <button id="langBtn" class="lang-btn" type="button" aria-label="Switch language / Cambiar idioma">EN</button>
+    </div>
   </div>
 </div>
 
@@ -284,8 +295,8 @@
 
   <section id="about" class="hero">
     <span class="role">Data Analyst · Python / SQL / Power BI</span>
-    <h1>Convierto datos de operación real en sistemas que se usan.</h1>
-    <p class="lede">Data Analyst con formación en Ingeniería en Sistemas Computacionales. Trabajo con SQL, Power BI y Python para modelar, limpiar y visualizar datos de negocio, y con Node.js/PostgreSQL cuando el problema pide construir el backend completo. Actualmente en Odella (CDMX), administrando datos de CRM, ERP y Dynamics 365.</p>
+    <h1 data-es="Convierto datos de operación real en sistemas que se usan." data-en="I turn real operational data into systems people actually use.">Convierto datos de operación real en sistemas que se usan.</h1>
+    <p class="lede" data-es="Data Analyst con formación en Ingeniería en Sistemas Computacionales. Trabajo con SQL, Power BI y Python para modelar, limpiar y visualizar datos de negocio, y con Node.js/PostgreSQL cuando el problema pide construir el backend completo. Actualmente en Odella (CDMX), administrando datos de CRM, ERP y Dynamics 365." data-en="Data Analyst with a degree in Computer Systems Engineering. I work with SQL, Power BI and Python to model, clean and visualize business data, and with Node.js/PostgreSQL when the problem calls for building the full backend. Currently at Odella (Mexico City), managing CRM, ERP and Dynamics 365 data.">Data Analyst con formación en Ingeniería en Sistemas Computacionales. Trabajo con SQL, Power BI y Python para modelar, limpiar y visualizar datos de negocio, y con Node.js/PostgreSQL cuando el problema pide construir el backend completo. Actualmente en Odella (CDMX), administrando datos de CRM, ERP y Dynamics 365.</p>
 
     <div class="contact-row">
       <a class="primary" href="mailto:joshuemoreno612@gmail.com">joshuemoreno612@gmail.com</a>
@@ -294,48 +305,48 @@
     </div>
 
     <div class="stat-row">
-      <div class="stat-tile"><span class="stat-value mono" data-target="119" data-suffix="M">0</span><span class="stat-label">registros reales analizados</span></div>
-      <div class="stat-tile"><span class="stat-value mono" data-target="0.67" data-decimals="2">0</span><span class="stat-label">R² en modelo predictivo de propinas</span></div>
-      <div class="stat-tile"><span class="stat-value mono" data-target="300" data-suffix="K/s">0</span><span class="stat-label">filas por segundo cargadas a PostgreSQL</span></div>
+      <div class="stat-tile"><span class="stat-value mono" data-target="119" data-suffix="M">0</span><span class="stat-label" data-es="registros reales analizados" data-en="real records analyzed">registros reales analizados</span></div>
+      <div class="stat-tile"><span class="stat-value mono" data-target="0.67" data-decimals="2">0</span><span class="stat-label" data-es="R² en modelo predictivo de propinas" data-en="R² on tip-prediction model">R² en modelo predictivo de propinas</span></div>
+      <div class="stat-tile"><span class="stat-value mono" data-target="300" data-suffix="K/s">0</span><span class="stat-label" data-es="filas por segundo cargadas a PostgreSQL" data-en="rows per second loaded into PostgreSQL">filas por segundo cargadas a PostgreSQL</span></div>
     </div>
   </section>
 
   <section id="experience">
-    <span class="eyebrow">Experiencia</span>
-    <h2 class="h">Trayectoria</h2>
+    <span class="eyebrow" data-es="Experiencia" data-en="Experience">Experiencia</span>
+    <h2 class="h" data-es="Trayectoria" data-en="Career">Trayectoria</h2>
     <div class="job">
       <div class="jobhead">
         <h3>TI Analyst — Odella, CDMX</h3>
-        <span class="dates mono">Marzo 2025 — Actualidad</span>
+        <span class="dates mono" data-es="Marzo 2025 — Actualidad" data-en="March 2025 — Present">Marzo 2025 — Actualidad</span>
       </div>
       <ul>
-        <li>Administración y análisis de datos en CRM, ERP y Dynamics 365.</li>
-        <li>Desarrollo de dashboards en Power BI para visualización de KPIs y monitoreo de desempeño operativo.</li>
-        <li>Automatización de procesos internos mediante Power Automate, reduciendo tareas manuales repetitivas.</li>
-        <li>Diseño de flujos de información con SharePoint para mejorar trazabilidad y control documental.</li>
-        <li>Análisis de datos internos para identificación de oportunidades de mejora operativa.</li>
+        <li data-es="Administración y análisis de datos en CRM, ERP y Dynamics 365." data-en="Manage and analyze data across CRM, ERP and Dynamics 365.">Administración y análisis de datos en CRM, ERP y Dynamics 365.</li>
+        <li data-es="Desarrollo de dashboards en Power BI para visualización de KPIs y monitoreo de desempeño operativo." data-en="Build Power BI dashboards to visualize KPIs and monitor operational performance.">Desarrollo de dashboards en Power BI para visualización de KPIs y monitoreo de desempeño operativo.</li>
+        <li data-es="Automatización de procesos internos mediante Power Automate, reduciendo tareas manuales repetitivas." data-en="Automate internal processes with Power Automate, cutting down repetitive manual work.">Automatización de procesos internos mediante Power Automate, reduciendo tareas manuales repetitivas.</li>
+        <li data-es="Diseño de flujos de información con SharePoint para mejorar trazabilidad y control documental." data-en="Design SharePoint information flows to improve traceability and document control.">Diseño de flujos de información con SharePoint para mejorar trazabilidad y control documental.</li>
+        <li data-es="Análisis de datos internos para identificación de oportunidades de mejora operativa." data-en="Analyze internal data to spot operational improvement opportunities.">Análisis de datos internos para identificación de oportunidades de mejora operativa.</li>
       </ul>
     </div>
   </section>
 
   <section id="skills">
     <span class="eyebrow">Stack</span>
-    <h2 class="h">Habilidades técnicas</h2>
+    <h2 class="h" data-es="Habilidades técnicas" data-en="Technical Skills">Habilidades técnicas</h2>
 
     <div class="skillblock">
-      <h4>Análisis / BI</h4>
+      <h4 data-es="Análisis / BI" data-en="Analytics / BI">Análisis / BI</h4>
       <div class="pillrow">
-        <span>SQL avanzado</span><span>Power BI (DAX)</span><span>Excel avanzado (Power Query, VBA)</span>
+        <span data-es="SQL avanzado" data-en="Advanced SQL">SQL avanzado</span><span>Power BI (DAX)</span><span data-es="Excel avanzado (Power Query, VBA)" data-en="Advanced Excel (Power Query, VBA)">Excel avanzado (Power Query, VBA)</span>
       </div>
     </div>
     <div class="skillblock">
-      <h4>Programación / Datos</h4>
+      <h4 data-es="Programación / Datos" data-en="Programming / Data">Programación / Datos</h4>
       <div class="pillrow">
-        <span>Python (pandas, scikit-learn)</span><span>Node.js + Express</span><span>Prisma ORM</span><span>PostgreSQL / MySQL</span><span>APIs REST</span>
+        <span>Python (pandas, scikit-learn)</span><span>Node.js + Express</span><span>Prisma ORM</span><span>PostgreSQL / MySQL</span><span data-es="APIs REST" data-en="REST APIs">APIs REST</span>
       </div>
     </div>
     <div class="skillblock">
-      <h4>Automatización / Empresarial</h4>
+      <h4 data-es="Automatización / Empresarial" data-en="Automation / Enterprise">Automatización / Empresarial</h4>
       <div class="pillrow">
         <span>Power Automate</span><span>SharePoint</span><span>Microsoft Dynamics 365</span><span>Azure AD</span><span>CRM / ERP</span>
       </div>
@@ -343,76 +354,76 @@
   </section>
 
   <section id="projects">
-    <span class="eyebrow">Proyectos destacados</span>
-    <h2 class="h">Lo que he construido</h2>
+    <span class="eyebrow" data-es="Proyectos destacados" data-en="Featured Projects">Proyectos destacados</span>
+    <h2 class="h" data-es="Lo que he construido" data-en="What I've Built">Lo que he construido</h2>
 
     <article class="project-card" id="taxi">
       <div class="project-head">
         <h3>NYC Taxi Analytics</h3>
-        <span class="status">Pipeline end-to-end · completado</span>
+        <span class="status" data-es="Pipeline end-to-end · completado" data-en="End-to-end pipeline · completed">Pipeline end-to-end · completado</span>
       </div>
-      <p class="lede muted">Pipeline de portafolio sobre ~119M viajes reales de taxis amarillos de Nueva York (2022–2024): ingesta vía API, validación en Excel, limpieza y modelo de Machine Learning en Python, modelado relacional en PostgreSQL y dashboard ejecutivo en Power BI.</p>
+      <p class="lede muted" data-es="Pipeline de portafolio sobre ~119M viajes reales de taxis amarillos de Nueva York (2022–2024): ingesta vía API, validación en Excel, limpieza y modelo de Machine Learning en Python, modelado relacional en PostgreSQL y dashboard ejecutivo en Power BI." data-en="Portfolio pipeline over ~119M real NYC yellow taxi trips (2022–2024): API ingestion, validation in Excel, cleaning and a Machine Learning model in Python, relational modeling in PostgreSQL, and an executive dashboard in Power BI.">Pipeline de portafolio sobre ~119M viajes reales de taxis amarillos de Nueva York (2022–2024): ingesta vía API, validación en Excel, limpieza y modelo de Machine Learning en Python, modelado relacional en PostgreSQL y dashboard ejecutivo en Power BI.</p>
 
       <div class="quickfacts">
-        <span>119M registros analizados</span>
-        <span>26.7M filas en PostgreSQL</span>
-        <span>Dashboard ejecutivo en Power BI</span>
-        <span>Modelo ML de propinas</span>
+        <span data-es="119M registros analizados" data-en="119M records analyzed">119M registros analizados</span>
+        <span data-es="26.7M filas en PostgreSQL" data-en="26.7M rows in PostgreSQL">26.7M filas en PostgreSQL</span>
+        <span data-es="Dashboard ejecutivo en Power BI" data-en="Executive dashboard in Power BI">Dashboard ejecutivo en Power BI</span>
+        <span data-es="Modelo ML de propinas" data-en="ML tip-prediction model">Modelo ML de propinas</span>
       </div>
 
       <div class="links-row">
-        <a href="https://github.com/Josss180M/nyc-taxi-analytics" target="_blank" rel="noopener">Ver repositorio en GitHub ↗</a>
+        <a href="https://github.com/Josss180M/nyc-taxi-analytics" target="_blank" rel="noopener"><span data-es="Ver repositorio en GitHub ↗" data-en="View repository on GitHub ↗">Ver repositorio en GitHub ↗</span></a>
       </div>
 
       <details class="techdetails">
         <summary>
-          <span class="when-closed">Ver detalle técnico: pipeline, capturas y hallazgos</span>
-          <span class="when-open">Ocultar detalle técnico</span>
+          <span class="when-closed" data-es="Ver detalle técnico: pipeline, capturas y hallazgos" data-en="View technical detail: pipeline, screenshots and findings">Ver detalle técnico: pipeline, capturas y hallazgos</span>
+          <span class="when-open" data-es="Ocultar detalle técnico" data-en="Hide technical detail">Ocultar detalle técnico</span>
         </summary>
         <div class="techdetails-body">
 
           <div class="route">
-            <div class="stop"><span class="stopnum">01</span><div class="stopname">API REST</div><span class="stopstate">Completado</span></div>
-            <div class="stop"><span class="stopnum">02</span><div class="stopname">Excel + Power Query</div><span class="stopstate">Completado</span></div>
-            <div class="stop"><span class="stopnum">03</span><div class="stopname">Python EDA + ML</div><span class="stopstate">Completado</span></div>
-            <div class="stop"><span class="stopnum">04</span><div class="stopname">PostgreSQL</div><span class="stopstate">Completado</span></div>
-            <div class="stop"><span class="stopnum">05</span><div class="stopname">Power BI</div><span class="stopstate">Completado</span></div>
+            <div class="stop"><span class="stopnum">01</span><div class="stopname">API REST</div><span class="stopstate" data-es="Completado" data-en="Completed">Completado</span></div>
+            <div class="stop"><span class="stopnum">02</span><div class="stopname">Excel + Power Query</div><span class="stopstate" data-es="Completado" data-en="Completed">Completado</span></div>
+            <div class="stop"><span class="stopnum">03</span><div class="stopname">Python EDA + ML</div><span class="stopstate" data-es="Completado" data-en="Completed">Completado</span></div>
+            <div class="stop"><span class="stopnum">04</span><div class="stopname">PostgreSQL</div><span class="stopstate" data-es="Completado" data-en="Completed">Completado</span></div>
+            <div class="stop"><span class="stopnum">05</span><div class="stopname">Power BI</div><span class="stopstate" data-es="Completado" data-en="Completed">Completado</span></div>
           </div>
 
           <div class="meters">
-            <div class="meter-tile"><span class="stat-value mono" data-target="119" data-suffix="M">0</span><span class="stat-label">registros reales procesados</span></div>
-            <div class="meter-tile"><span class="stat-value mono" data-target="26.7" data-decimals="1" data-suffix="M">0</span><span class="stat-label">filas cargadas en PostgreSQL</span></div>
-            <div class="meter-tile"><span class="stat-value mono" data-target="1.28" data-decimals="2" data-prefix="$" data-suffix="M">0</span><span class="stat-label">revenue generado en JFK Airport</span></div>
-            <div class="meter-tile"><span class="stat-value mono" data-target="0.67" data-decimals="2">0</span><span class="stat-label">R² del modelo de propinas (RandomForest)</span></div>
-            <div class="meter-tile"><span class="stat-value mono" data-target="80" data-suffix="%">0</span><span class="stat-label">de los pagos son con tarjeta</span></div>
-            <div class="meter-tile"><span class="stat-value mono" data-target="88" data-suffix="%">0</span><span class="stat-label">del volumen de viajes es en Manhattan</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="119" data-suffix="M">0</span><span class="stat-label" data-es="registros reales procesados" data-en="real records processed">registros reales procesados</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="26.7" data-decimals="1" data-suffix="M">0</span><span class="stat-label" data-es="filas cargadas en PostgreSQL" data-en="rows loaded into PostgreSQL">filas cargadas en PostgreSQL</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="1.28" data-decimals="2" data-prefix="$" data-suffix="M">0</span><span class="stat-label" data-es="revenue generado en JFK Airport" data-en="revenue generated at JFK Airport">revenue generado en JFK Airport</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="0.67" data-decimals="2">0</span><span class="stat-label" data-es="R² del modelo de propinas (RandomForest)" data-en="R² of the tip-prediction model (RandomForest)">R² del modelo de propinas (RandomForest)</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="80" data-suffix="%">0</span><span class="stat-label" data-es="de los pagos son con tarjeta" data-en="of payments are made by card">de los pagos son con tarjeta</span></div>
+            <div class="meter-tile"><span class="stat-value mono" data-target="88" data-suffix="%">0</span><span class="stat-label" data-es="del volumen de viajes es en Manhattan" data-en="of trip volume is in Manhattan">del volumen de viajes es en Manhattan</span></div>
           </div>
 
-          <p class="lede small muted">Capturas reales del reporte de Power BI (modelo cargado con una muestra de 810,000 viajes vía PostgreSQL):</p>
+          <p class="lede small muted" data-es="Capturas reales del reporte de Power BI (modelo cargado con una muestra de 810,000 viajes vía PostgreSQL):" data-en="Real screenshots of the Power BI report (model loaded with a sample of 810,000 trips via PostgreSQL):">Capturas reales del reporte de Power BI (modelo cargado con una muestra de 810,000 viajes vía PostgreSQL):</p>
           <div class="shots">
             <figure class="shot">
               <div class="tab">Overview</div>
               <a class="zoomlink" href="assets/img/powerbi-overview.png" target="_blank" rel="noopener">
-                <img src="assets/img/powerbi-overview.png" alt="Dashboard de Power BI, página Overview: KPIs de Total Revenue, Total Trips, Avg Fare y Avg Tip %, tendencia mensual de revenue y distribución por tipo de pago" width="1512" height="853" loading="lazy">
-                <span class="zoomhint">Ver tamaño completo ↗</span>
+                <img src="assets/img/powerbi-overview.png" alt="Dashboard de Power BI, página Overview: KPIs de Total Revenue, Total Trips, Avg Fare y Avg Tip %, tendencia mensual de revenue y distribución por tipo de pago" data-alt-es="Dashboard de Power BI, página Overview: KPIs de Total Revenue, Total Trips, Avg Fare y Avg Tip %, tendencia mensual de revenue y distribución por tipo de pago" data-alt-en="Power BI dashboard, Overview page: Total Revenue, Total Trips, Avg Fare and Avg Tip % KPIs, monthly revenue trend and payment type distribution" width="1512" height="853" loading="lazy">
+                <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
               </a>
-              <figcaption>$14.53M en revenue, 810K viajes, tarifa promedio $17.94, 21% de propina promedio.</figcaption>
+              <figcaption data-es="$14.53M en revenue, 810K viajes, tarifa promedio $17.94, 21% de propina promedio." data-en="$14.53M in revenue, 810K trips, $17.94 average fare, 21% average tip.">$14.53M en revenue, 810K viajes, tarifa promedio $17.94, 21% de propina promedio.</figcaption>
             </figure>
             <figure class="shot">
               <div class="tab">Revenue Analysis</div>
               <a class="zoomlink" href="assets/img/powerbi-revenue-analysis.png" target="_blank" rel="noopener">
-                <img src="assets/img/powerbi-revenue-analysis.png" alt="Dashboard de Power BI, página Revenue Analysis: revenue por año, tabla de rate codes, gauge de tarifa promedio contra meta y dispersión de tarifa vs distancia" width="1517" height="849" loading="lazy">
-                <span class="zoomhint">Ver tamaño completo ↗</span>
+                <img src="assets/img/powerbi-revenue-analysis.png" alt="Dashboard de Power BI, página Revenue Analysis: revenue por año, tabla de rate codes, gauge de tarifa promedio contra meta y dispersión de tarifa vs distancia" data-alt-es="Dashboard de Power BI, página Revenue Analysis: revenue por año, tabla de rate codes, gauge de tarifa promedio contra meta y dispersión de tarifa vs distancia" data-alt-en="Power BI dashboard, Revenue Analysis page: revenue by year, rate codes table, average-fare-vs-target gauge and fare vs distance scatter plot" width="1517" height="849" loading="lazy">
+                <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
               </a>
-              <figcaption>Crecimiento interanual de revenue: 1.36%. 81.84% de los viajes pagados con tarjeta.</figcaption>
+              <figcaption data-es="Crecimiento interanual de revenue: 1.36%. 81.84% de los viajes pagados con tarjeta." data-en="Year-over-year revenue growth: 1.36%. 81.84% of trips paid by card.">Crecimiento interanual de revenue: 1.36%. 81.84% de los viajes pagados con tarjeta.</figcaption>
             </figure>
           </div>
 
           <ul class="findings">
-            <li>Modelo RandomForestRegressor predice propina por viaje con RMSE de $2.12 USD.</li>
-            <li>La hora pico de demanda es las 18:00 hrs, con 24,614 viajes registrados.</li>
-            <li>La hora más rentable por viaje es las 5:00 am, con $35 de tarifa promedio.</li>
-            <li>Carga masiva a PostgreSQL con <code>COPY FROM STDIN</code>: ~300,000 filas/segundo.</li>
+            <li data-es="Modelo RandomForestRegressor predice propina por viaje con RMSE de $2.12 USD." data-en="RandomForestRegressor model predicts tip per trip with an RMSE of $2.12 USD.">Modelo RandomForestRegressor predice propina por viaje con RMSE de $2.12 USD.</li>
+            <li data-es="La hora pico de demanda es las 18:00 hrs, con 24,614 viajes registrados." data-en="Peak demand hour is 6:00 PM, with 24,614 trips recorded.">La hora pico de demanda es las 18:00 hrs, con 24,614 viajes registrados.</li>
+            <li data-es="La hora más rentable por viaje es las 5:00 am, con $35 de tarifa promedio." data-en="The most profitable hour per trip is 5:00 AM, with a $35 average fare.">La hora más rentable por viaje es las 5:00 am, con $35 de tarifa promedio.</li>
+            <li data-html="1" data-es="Carga masiva a PostgreSQL con <code>COPY FROM STDIN</code>: ~300,000 filas/segundo." data-en="Bulk load into PostgreSQL with <code>COPY FROM STDIN</code>: ~300,000 rows/second.">Carga masiva a PostgreSQL con <code>COPY FROM STDIN</code>: ~300,000 filas/segundo.</li>
           </ul>
 
         </div>
@@ -422,46 +433,46 @@
     <article class="project-card" id="cocina">
       <div class="project-head">
         <h3>Cocina MVP — Backend</h3>
-        <span class="status">API REST · en producción</span>
+        <span class="status" data-es="API REST · en producción" data-en="REST API · in production">API REST · en producción</span>
       </div>
-      <p class="lede muted">Proyecto solicitado internamente por Odella para digitalizar la operación de su cocina/restaurante. Construí la API REST: catálogo de platillos, ingredientes y extras, ciclo completo de pedidos con bitácora de pagos, tres roles de acceso y notificaciones a Microsoft Teams. Documentada con Swagger/OpenAPI y desplegada en Render.</p>
+      <p class="lede muted" data-es="Proyecto solicitado internamente por Odella para digitalizar la operación de su cocina/restaurante. Construí la API REST: catálogo de platillos, ingredientes y extras, ciclo completo de pedidos con bitácora de pagos, tres roles de acceso y notificaciones a Microsoft Teams. Documentada con Swagger/OpenAPI y desplegada en Render." data-en="Project requested internally by Odella to digitize its kitchen/restaurant operation. I built the REST API: dish, ingredient and extras catalog, a full order lifecycle with a payment audit log, three access roles, and Microsoft Teams notifications. Documented with Swagger/OpenAPI and deployed on Render.">Proyecto solicitado internamente por Odella para digitalizar la operación de su cocina/restaurante. Construí la API REST: catálogo de platillos, ingredientes y extras, ciclo completo de pedidos con bitácora de pagos, tres roles de acceso y notificaciones a Microsoft Teams. Documentada con Swagger/OpenAPI y desplegada en Render.</p>
 
       <div class="quickfacts">
         <span>Node.js + Express + PostgreSQL</span>
-        <span>3 roles de acceso</span>
+        <span data-es="3 roles de acceso" data-en="3 access roles">3 roles de acceso</span>
         <span>Login Microsoft/Azure AD</span>
-        <span>Notificaciones a Teams</span>
+        <span data-es="Notificaciones a Teams" data-en="Teams notifications">Notificaciones a Teams</span>
       </div>
 
-      <p class="lede small muted">Capturas reales del panel de administración en producción:</p>
+      <p class="lede small muted" data-es="Capturas reales del panel de administración en producción:" data-en="Real screenshots of the admin panel in production:">Capturas reales del panel de administración en producción:</p>
       <div class="shots">
         <figure class="shot">
           <div class="tab">Pedidos</div>
           <a class="zoomlink" href="assets/img/cocina/cocina-pedidos.png" target="_blank" rel="noopener">
-            <img src="assets/img/cocina/cocina-pedidos.png" alt="Panel de Cocina MVP, pestaña Pedidos: tablero en vivo con columnas En espera, En preparación y Listos, tarjetas con nota, cambio de estado y cobro" width="1888" height="910" loading="lazy">
-            <span class="zoomhint">Ver tamaño completo ↗</span>
+            <img src="assets/img/cocina/cocina-pedidos.png" alt="Panel de Cocina MVP, pestaña Pedidos: tablero en vivo con columnas En espera, En preparación y Listos, tarjetas con nota, cambio de estado y cobro" data-alt-es="Panel de Cocina MVP, pestaña Pedidos: tablero en vivo con columnas En espera, En preparación y Listos, tarjetas con nota, cambio de estado y cobro" data-alt-en="Cocina MVP admin panel, Pedidos (Orders) tab: live board with Waiting, In Progress and Ready columns, cards with notes, status changes and payment" width="1888" height="910" loading="lazy">
+            <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
           </a>
-          <figcaption>Tablero en vivo (refresca cada 5s): estado, notas y cobro por pedido.</figcaption>
+          <figcaption data-es="Tablero en vivo (refresca cada 5s): estado, notas y cobro por pedido." data-en="Live board (refreshes every 5s): status, notes and payment per order.">Tablero en vivo (refresca cada 5s): estado, notas y cobro por pedido.</figcaption>
         </figure>
         <figure class="shot">
           <div class="tab">Platillos</div>
           <a class="zoomlink" href="assets/img/cocina/cocina-platillos.png" target="_blank" rel="noopener">
-            <img src="assets/img/cocina/cocina-platillos.png" alt="Panel de Cocina MVP, pestaña Platillos: catálogo con precio, disponibilidad e íconos, con opciones de editar y eliminar" width="1879" height="907" loading="lazy">
-            <span class="zoomhint">Ver tamaño completo ↗</span>
+            <img src="assets/img/cocina/cocina-platillos.png" alt="Panel de Cocina MVP, pestaña Platillos: catálogo con precio, disponibilidad e íconos, con opciones de editar y eliminar" data-alt-es="Panel de Cocina MVP, pestaña Platillos: catálogo con precio, disponibilidad e íconos, con opciones de editar y eliminar" data-alt-en="Cocina MVP admin panel, Platillos (Dishes) tab: catalog with price, availability and icons, with edit and delete options" width="1879" height="907" loading="lazy">
+            <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
           </a>
-          <figcaption>Catálogo del menú: precio, disponibilidad y edición en línea.</figcaption>
+          <figcaption data-es="Catálogo del menú: precio, disponibilidad y edición en línea." data-en="Menu catalog: price, availability and inline editing.">Catálogo del menú: precio, disponibilidad y edición en línea.</figcaption>
         </figure>
       </div>
 
       <div class="links-row">
-        <a href="https://github.com/Josss180M/Back_end" target="_blank" rel="noopener">Ver backend en GitHub ↗</a>
-        <a href="https://github.com/Josss180M/Front_Cocina" target="_blank" rel="noopener">Ver frontend en GitHub ↗</a>
+        <a href="https://github.com/Josss180M/Back_end" target="_blank" rel="noopener"><span data-es="Ver backend en GitHub ↗" data-en="View backend on GitHub ↗">Ver backend en GitHub ↗</span></a>
+        <a href="https://github.com/Josss180M/Front_Cocina" target="_blank" rel="noopener"><span data-es="Ver frontend en GitHub ↗" data-en="View frontend on GitHub ↗">Ver frontend en GitHub ↗</span></a>
       </div>
 
       <details class="techdetails">
         <summary>
-          <span class="when-closed">Ver detalle técnico: modelo de datos, permisos y seguridad</span>
-          <span class="when-open">Ocultar detalle técnico</span>
+          <span class="when-closed" data-es="Ver detalle técnico: modelo de datos, permisos y seguridad" data-en="View technical detail: data model, permissions and security">Ver detalle técnico: modelo de datos, permisos y seguridad</span>
+          <span class="when-open" data-es="Ocultar detalle técnico" data-en="Hide technical detail">Ocultar detalle técnico</span>
         </summary>
         <div class="techdetails-body">
 
@@ -469,24 +480,24 @@
             <figure class="shot">
               <div class="tab">Editar platillo</div>
               <a class="zoomlink" href="assets/img/cocina/cocina-editar-platillo.png" target="_blank" rel="noopener">
-                <img src="assets/img/cocina/cocina-editar-platillo.png" alt="Panel de Cocina MVP, formulario de edición de un platillo: nombre, descripción, precio, ingredientes opcionales gratis, imagen y disponibilidad" width="444" height="811" loading="lazy">
-                <span class="zoomhint">Ver tamaño completo ↗</span>
+                <img src="assets/img/cocina/cocina-editar-platillo.png" alt="Panel de Cocina MVP, formulario de edición de un platillo: nombre, descripción, precio, ingredientes opcionales gratis, imagen y disponibilidad" data-alt-es="Panel de Cocina MVP, formulario de edición de un platillo: nombre, descripción, precio, ingredientes opcionales gratis, imagen y disponibilidad" data-alt-en="Cocina MVP admin panel, dish edit form (Editar platillo): name, description, price, free optional ingredients, image and availability" width="444" height="811" loading="lazy">
+                <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
               </a>
-              <figcaption>Formulario de edición: precio, imagen e ingredientes incluidos/gratis.</figcaption>
+              <figcaption data-es="Formulario de edición: precio, imagen e ingredientes incluidos/gratis." data-en="Edit form: price, image, and included/free ingredients.">Formulario de edición: precio, imagen e ingredientes incluidos/gratis.</figcaption>
             </figure>
             <figure class="shot">
               <div class="tab">Extras</div>
               <a class="zoomlink" href="assets/img/cocina/cocina-extras.png" target="_blank" rel="noopener">
-                <img src="assets/img/cocina/cocina-extras.png" alt="Panel de Cocina MVP, pestaña Extras: catálogo de bebidas y postres con tamaños y sabores configurables" width="1888" height="907" loading="lazy">
-                <span class="zoomhint">Ver tamaño completo ↗</span>
+                <img src="assets/img/cocina/cocina-extras.png" alt="Panel de Cocina MVP, pestaña Extras: catálogo de bebidas y postres con tamaños y sabores configurables" data-alt-es="Panel de Cocina MVP, pestaña Extras: catálogo de bebidas y postres con tamaños y sabores configurables" data-alt-en="Cocina MVP admin panel, Extras tab: drinks and desserts catalog with configurable sizes and flavors" width="1888" height="907" loading="lazy">
+                <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
               </a>
-              <figcaption>Bebidas y postres con tamaños y sabores configurables por producto.</figcaption>
+              <figcaption data-es="Bebidas y postres con tamaños y sabores configurables por producto." data-en="Drinks and desserts with configurable sizes and flavors per product.">Bebidas y postres con tamaños y sabores configurables por producto.</figcaption>
             </figure>
           </div>
 
-          <p class="lede small" style="margin-top:1.2rem;">Modelo de datos (PostgreSQL vía Prisma):</p>
+          <p class="lede small" style="margin-top:1.2rem;" data-es="Modelo de datos (PostgreSQL vía Prisma):" data-en="Data model (PostgreSQL via Prisma):">Modelo de datos (PostgreSQL vía Prisma):</p>
           <div class="table-wrap">
-            <svg viewBox="0 0 920 380" role="img" aria-label="Diagrama entidad-relación: Usuario tiene muchos Pedido; cada Pedido tiene muchos PedidoItem y muchos PedidoPagoLog; Platillo se relaciona con Ingrediente mediante RelacionPlatilloIngrediente y con Extra mediante PlatilloExtra; Configuracion es independiente" style="min-width:760px; width:100%; height:auto; font-family:var(--font-mono);">
+            <svg viewBox="0 0 920 380" role="img" aria-label="Diagrama entidad-relación: Usuario tiene muchos Pedido; cada Pedido tiene muchos PedidoItem y muchos PedidoPagoLog; Platillo se relaciona con Ingrediente mediante RelacionPlatilloIngrediente y con Extra mediante PlatilloExtra; Configuracion es independiente" data-aria-es="Diagrama entidad-relación: Usuario tiene muchos Pedido; cada Pedido tiene muchos PedidoItem y muchos PedidoPagoLog; Platillo se relaciona con Ingrediente mediante RelacionPlatilloIngrediente y con Extra mediante PlatilloExtra; Configuracion es independiente" data-aria-en="Entity-relationship diagram (model names kept as in the real Prisma schema): Usuario (User) has many Pedido (Order); each Pedido has many PedidoItem and many PedidoPagoLog; Platillo (Dish) relates to Ingrediente (Ingredient) through RelacionPlatilloIngrediente and to Extra through PlatilloExtra; Configuracion (Config) is independent" style="min-width:760px; width:100%; height:auto; font-family:var(--font-mono);">
               <defs>
                 <marker id="erArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="var(--meter)"></path>
@@ -533,127 +544,127 @@
               <g>
                 <rect x="760" y="220" width="160" height="44" fill="var(--paper-raised)" stroke="var(--slate)" stroke-width="1.2" stroke-dasharray="4 3"></rect>
                 <text x="840" y="243" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">Configuracion</text>
-                <text x="840" y="279" font-size="10" fill="var(--slate)" text-anchor="middle">clave–valor, sin relaciones</text>
+                <text x="840" y="279" font-size="10" fill="var(--slate)" text-anchor="middle" data-es="clave–valor, sin relaciones" data-en="key–value, no relations">clave–valor, sin relaciones</text>
               </g>
             </svg>
           </div>
 
-          <p class="lede small">Ciclo de vida de un pedido:</p>
+          <p class="lede small" data-es="Ciclo de vida de un pedido:" data-en="Order lifecycle:">Ciclo de vida de un pedido:</p>
           <div class="statepath">
             <span class="state">en_espera</span><span class="arrow">→</span>
             <span class="state">en_preparación</span><span class="arrow">→</span>
             <span class="state">listo</span><span class="arrow">→</span>
             <span class="state pay">pagado</span>
           </div>
-          <p class="lede small muted">Rutas alternas: <code>en_espera → en_revisión → en_espera</code> (el cliente corrige y reenvía) · <code>en_espera → cancelado</code>. Cada cambio de pago queda registrado en una bitácora de auditoría (<code>PedidoPagoLog</code>) dentro de la misma transacción.</p>
+          <p class="lede small muted" data-html="1" data-es="Rutas alternas: <code>en_espera → en_revisión → en_espera</code> (el cliente corrige y reenvía) · <code>en_espera → cancelado</code>. Cada cambio de pago queda registrado en una bitácora de auditoría (<code>PedidoPagoLog</code>) dentro de la misma transacción." data-en="Alternate routes: <code>en_espera → en_revisión → en_espera</code> (the customer corrects and resubmits) · <code>en_espera → cancelado</code>. Every payment change is logged in an audit trail (<code>PedidoPagoLog</code>) within the same transaction.">Rutas alternas: <code>en_espera → en_revisión → en_espera</code> (el cliente corrige y reenvía) · <code>en_espera → cancelado</code>. Cada cambio de pago queda registrado en una bitácora de auditoría (<code>PedidoPagoLog</code>) dentro de la misma transacción.</p>
 
-          <p class="lede small" style="margin-top:1.2rem;">Matriz de permisos por rol:</p>
+          <p class="lede small" style="margin-top:1.2rem;" data-es="Matriz de permisos por rol:" data-en="Permission matrix by role:">Matriz de permisos por rol:</p>
           <div class="table-wrap">
             <table class="matrix">
               <thead>
-                <tr><th>Acción</th><th>Admin</th><th>Jefe de Cocina</th><th>Cliente</th></tr>
+                <tr><th data-es="Acción" data-en="Action">Acción</th><th>Admin</th><th data-es="Jefe de Cocina" data-en="Kitchen Manager">Jefe de Cocina</th><th data-es="Cliente" data-en="Customer">Cliente</th></tr>
               </thead>
               <tbody>
-                <tr><td>Pedidos: listar / cambiar status / marcar pagado</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-                <tr><td>Reporte financiero (revenue, top items)</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-                <tr><td>Platillos / Ingredientes / Extras: crear, editar, eliminar</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-                <tr><td>Platillos / Ingredientes / Extras: solo activar/inactivar</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-                <tr><td>Gestión de usuarios</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-                <tr><td>Crear pedido / ver mis pedidos / cancelar</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+                <tr><td data-es="Pedidos: listar / cambiar status / marcar pagado" data-en="Orders: list / change status / mark as paid">Pedidos: listar / cambiar status / marcar pagado</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
+                <tr><td data-es="Reporte financiero (revenue, top items)" data-en="Financial report (revenue, top items)">Reporte financiero (revenue, top items)</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+                <tr><td data-es="Platillos / Ingredientes / Extras: crear, editar, eliminar" data-en="Dishes / Ingredients / Extras: create, edit, delete">Platillos / Ingredientes / Extras: crear, editar, eliminar</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+                <tr><td data-es="Platillos / Ingredientes / Extras: solo activar/inactivar" data-en="Dishes / Ingredients / Extras: toggle active only">Platillos / Ingredientes / Extras: solo activar/inactivar</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
+                <tr><td data-es="Gestión de usuarios" data-en="User management">Gestión de usuarios</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+                <tr><td data-es="Crear pedido / ver mis pedidos / cancelar" data-en="Create order / view my orders / cancel">Crear pedido / ver mis pedidos / cancelar</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
               </tbody>
             </table>
           </div>
 
           <ul class="findings">
-            <li>Autenticación por correo/contraseña, login con Microsoft/Azure AD y SSO desde Microsoft Teams.</li>
-            <li>Permisos por campo: si el Jefe de Cocina envía un campo fuera de lo permitido, la API responde <code>403</code> en vez de aplicar el cambio a medias.</li>
-            <li>Rate limiting: 10 intentos de login por 15 min, 60 solicitudes por minuto por usuario autenticado.</li>
-            <li>El total de cada pedido se calcula en el servidor — nunca se confía en el monto enviado por el cliente.</li>
-            <li>Notificaciones a Teams vía Microsoft Graph API cuando cambia el estado de un pedido.</li>
+            <li data-es="Autenticación por correo/contraseña, login con Microsoft/Azure AD y SSO desde Microsoft Teams." data-en="Email/password authentication, Microsoft/Azure AD login, and SSO from Microsoft Teams.">Autenticación por correo/contraseña, login con Microsoft/Azure AD y SSO desde Microsoft Teams.</li>
+            <li data-html="1" data-es="Permisos por campo: si el Jefe de Cocina envía un campo fuera de lo permitido, la API responde <code>403</code> en vez de aplicar el cambio a medias." data-en="Field-level permissions: if the Kitchen Manager sends a field outside what's allowed, the API responds with <code>403</code> instead of applying a partial change.">Permisos por campo: si el Jefe de Cocina envía un campo fuera de lo permitido, la API responde <code>403</code> en vez de aplicar el cambio a medias.</li>
+            <li data-es="Rate limiting: 10 intentos de login por 15 min, 60 solicitudes por minuto por usuario autenticado." data-en="Rate limiting: 10 login attempts per 15 min, 60 requests per minute per authenticated user.">Rate limiting: 10 intentos de login por 15 min, 60 solicitudes por minuto por usuario autenticado.</li>
+            <li data-es="El total de cada pedido se calcula en el servidor — nunca se confía en el monto enviado por el cliente." data-en="Each order's total is calculated server-side — the amount sent by the client is never trusted.">El total de cada pedido se calcula en el servidor — nunca se confía en el monto enviado por el cliente.</li>
+            <li data-es="Notificaciones a Teams vía Microsoft Graph API cuando cambia el estado de un pedido." data-en="Teams notifications via the Microsoft Graph API whenever an order's status changes.">Notificaciones a Teams vía Microsoft Graph API cuando cambia el estado de un pedido.</li>
           </ul>
 
-          <p class="lede small muted" style="margin-top:1.2rem;">Esta API es consumida por un frontend en React (Vite, Tailwind, Framer Motion) desarrollado principalmente por un compañero de equipo.</p>
+          <p class="lede small muted" style="margin-top:1.2rem;" data-es="Esta API es consumida por un frontend en React (Vite, Tailwind, Framer Motion) desarrollado principalmente por un compañero de equipo." data-en="This API is consumed by a React frontend (Vite, Tailwind, Framer Motion) built mainly by a teammate.">Esta API es consumida por un frontend en React (Vite, Tailwind, Framer Motion) desarrollado principalmente por un compañero de equipo.</p>
         </div>
       </details>
     </article>
 
     <article class="project-card" id="automate">
       <div class="project-head">
-        <h3>Automatización de Aprobaciones — Power Automate</h3>
-        <span class="status">Flujo en producción · Odella</span>
+        <h3 data-es="Automatización de Aprobaciones — Power Automate" data-en="Approval Automation — Power Automate">Automatización de Aprobaciones — Power Automate</h3>
+        <span class="status" data-es="Flujo en producción · Odella" data-en="Flow in production · Odella">Flujo en producción · Odella</span>
       </div>
-      <p class="lede muted">Flujo de aprobación en Power Automate para el proceso de solicitudes de diseño de Odella, diseñado, construido y desplegado en colaboración pareja con mi equipo de TI — la lógica del flujo y el dashboard de Power BI son trabajo conjunto, del que somos copropietarios. Se dispara al cambiar el estado de una solicitud en una lista de SharePoint, evalúa ese estado y notifica automáticamente por correo y Microsoft Teams — sin que nadie tenga que revisar manualmente cada solicitud.</p>
+      <p class="lede muted" data-es="Flujo de aprobación en Power Automate para el proceso de solicitudes de diseño de Odella, diseñado, construido y desplegado en colaboración pareja con mi equipo de TI — la lógica del flujo y el dashboard de Power BI son trabajo conjunto, del que somos copropietarios. Se dispara al cambiar el estado de una solicitud en una lista de SharePoint, evalúa ese estado y notifica automáticamente por correo y Microsoft Teams — sin que nadie tenga que revisar manualmente cada solicitud." data-en="Approval flow in Power Automate for Odella's design-request process, designed, built and deployed as an even collaboration with my IT team — the flow logic and the Power BI dashboard are joint work that we co-own. It triggers when a request's status changes on a SharePoint list, evaluates that status, and automatically notifies by email and Microsoft Teams — with no one having to review each request by hand.">Flujo de aprobación en Power Automate para el proceso de solicitudes de diseño de Odella, diseñado, construido y desplegado en colaboración pareja con mi equipo de TI — la lógica del flujo y el dashboard de Power BI son trabajo conjunto, del que somos copropietarios. Se dispara al cambiar el estado de una solicitud en una lista de SharePoint, evalúa ese estado y notifica automáticamente por correo y Microsoft Teams — sin que nadie tenga que revisar manualmente cada solicitud.</p>
 
       <div class="quickfacts">
-        <span>Trigger: cambio de item en SharePoint</span>
-        <span>Switch por estado de aprobación</span>
-        <span>Notificaciones por correo y Teams</span>
-        <span>Diseñado y construido con mi equipo</span>
+        <span data-es="Trigger: cambio de item en SharePoint" data-en="Trigger: SharePoint item change">Trigger: cambio de item en SharePoint</span>
+        <span data-es="Switch por estado de aprobación" data-en="Switch on approval status">Switch por estado de aprobación</span>
+        <span data-es="Notificaciones por correo y Teams" data-en="Email and Teams notifications">Notificaciones por correo y Teams</span>
+        <span data-es="Diseñado y construido con mi equipo" data-en="Designed and built with my team">Diseñado y construido con mi equipo</span>
       </div>
 
-      <p class="lede small muted">Capturas reales del sitio y el reporte (nombres del personal cubiertos por privacidad):</p>
+      <p class="lede small muted" data-es="Capturas reales del sitio y el reporte (nombres del personal cubiertos por privacidad):" data-en="Real screenshots of the site and report (staff names covered for privacy):">Capturas reales del sitio y el reporte (nombres del personal cubiertos por privacidad):</p>
       <div class="shots">
         <figure class="shot">
-          <div class="tab">KPIs de solicitudes</div>
+          <div class="tab" data-es="KPIs de solicitudes" data-en="Request KPIs">KPIs de solicitudes</div>
           <a class="zoomlink" href="assets/img/automate/solicitudes-kpis-redacted.png" target="_blank" rel="noopener">
-            <img src="assets/img/automate/solicitudes-kpis-redacted.png" alt="Dashboard de Power BI embebido en SharePoint: solicitudes recibidas, entregadas, con retraso, prioridad dominante, solicitudes por mes y demanda por categoría de producto" width="1089" height="619" loading="lazy">
-            <span class="zoomhint">Ver tamaño completo ↗</span>
+            <img src="assets/img/automate/solicitudes-kpis-redacted.png" alt="Dashboard de Power BI embebido en SharePoint: solicitudes recibidas, entregadas, con retraso, prioridad dominante, solicitudes por mes y demanda por categoría de producto" data-alt-es="Dashboard de Power BI embebido en SharePoint: solicitudes recibidas, entregadas, con retraso, prioridad dominante, solicitudes por mes y demanda por categoría de producto" data-alt-en="Power BI dashboard embedded in SharePoint: requests received, delivered, delayed, dominant priority, requests per month, and demand by product category" width="1089" height="619" loading="lazy">
+            <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
           </a>
-          <figcaption>1,640 solicitudes recibidas, 1,427 entregadas, 16% con retraso. Inyectables/Quirúrgicos concentra la mayor demanda de diseño.</figcaption>
+          <figcaption data-es="1,640 solicitudes recibidas, 1,427 entregadas, 16% con retraso. Inyectables/Quirúrgicos concentra la mayor demanda de diseño." data-en="1,640 requests received, 1,427 delivered, 16% delayed. Injectables/Surgical accounts for the highest design demand.">1,640 solicitudes recibidas, 1,427 entregadas, 16% con retraso. Inyectables/Quirúrgicos concentra la mayor demanda de diseño.</figcaption>
         </figure>
         <figure class="shot">
-          <div class="tab">Sitio de SharePoint</div>
+          <div class="tab" data-es="Sitio de SharePoint" data-en="SharePoint site">Sitio de SharePoint</div>
           <a class="zoomlink" href="assets/img/automate/solicitudes-categorias.png" target="_blank" rel="noopener">
-            <img src="assets/img/automate/solicitudes-categorias.png" alt="Sitio de SharePoint 'Solicitudes de diseño' con navegación por categoría de producto: Dermo-Cosmeto Beauty, Capilares y Suplementos, Equipos médicos, Ginecológicos, Diseño industrial" width="1734" height="682" loading="lazy">
-            <span class="zoomhint">Ver tamaño completo ↗</span>
+            <img src="assets/img/automate/solicitudes-categorias.png" alt="Sitio de SharePoint 'Solicitudes de diseño' con navegación por categoría de producto: Dermo-Cosmeto Beauty, Capilares y Suplementos, Equipos médicos, Ginecológicos, Diseño industrial" data-alt-es="Sitio de SharePoint 'Solicitudes de diseño' con navegación por categoría de producto: Dermo-Cosmeto Beauty, Capilares y Suplementos, Equipos médicos, Ginecológicos, Diseño industrial" data-alt-en="SharePoint 'Design Requests' site with navigation by product category: Dermo-Cosmetic Beauty, Hair Care & Supplements, Medical Equipment, Gynecological, Industrial Design" width="1734" height="682" loading="lazy">
+            <span class="zoomhint" data-es="Ver tamaño completo ↗" data-en="View full size ↗">Ver tamaño completo ↗</span>
           </a>
-          <figcaption>Portal donde el equipo de diseño da seguimiento a cada solicitud por categoría de producto.</figcaption>
+          <figcaption data-es="Portal donde el equipo de diseño da seguimiento a cada solicitud por categoría de producto." data-en="Portal where the design team tracks each request by product category.">Portal donde el equipo de diseño da seguimiento a cada solicitud por categoría de producto.</figcaption>
         </figure>
       </div>
 
-      <p class="lede small">Lógica del flujo:</p>
+      <p class="lede small" data-es="Lógica del flujo:" data-en="Flow logic:">Lógica del flujo:</p>
       <div class="statepath">
-        <span class="state">cambio detectado</span><span class="arrow">→</span>
-        <span class="state">evaluar estado</span><span class="arrow">→</span>
-        <span class="state">notificar (correo/Teams)</span><span class="arrow">→</span>
-        <span class="state pay">actualizar registro</span>
+        <span class="state" data-es="cambio detectado" data-en="change detected">cambio detectado</span><span class="arrow">→</span>
+        <span class="state" data-es="evaluar estado" data-en="evaluate status">evaluar estado</span><span class="arrow">→</span>
+        <span class="state" data-es="notificar (correo/Teams)" data-en="notify (email/Teams)">notificar (correo/Teams)</span><span class="arrow">→</span>
+        <span class="state pay" data-es="actualizar registro" data-en="update record">actualizar registro</span>
       </div>
-      <p class="lede small muted">Ramas según el estado evaluado: <code>rechazado</code> → crea una nueva solicitud de ajuste y notifica a quien la pidió · <code>solicitado</code> → notifica a quien debe revisarla · <code>aceptado</code> → marca el registro como entregado y notifica al interesado.</p>
+      <p class="lede small muted" data-html="1" data-es="Ramas según el estado evaluado: <code>rechazado</code> → crea una nueva solicitud de ajuste y notifica a quien la pidió · <code>solicitado</code> → notifica a quien debe revisarla · <code>aceptado</code> → marca el registro como entregado y notifica al interesado." data-en="Branches by evaluated status: <code>rechazado</code> → creates a new adjustment request and notifies whoever asked for it · <code>solicitado</code> → notifies whoever needs to review it · <code>aceptado</code> → marks the record as delivered and notifies the requester.">Ramas según el estado evaluado: <code>rechazado</code> → crea una nueva solicitud de ajuste y notifica a quien la pidió · <code>solicitado</code> → notifica a quien debe revisarla · <code>aceptado</code> → marca el registro como entregado y notifica al interesado.</p>
 
       <ul class="findings">
-        <li>Mismo patrón de máquina de estados que el ciclo de vida de un pedido en Cocina MVP, aquí orquestado sin código.</li>
-        <li>La propia lista de SharePoint funciona como bitácora — cada cambio de estado queda registrado con fecha, sin necesitar una base de datos aparte.</li>
-        <li>Las notificaciones cambian de texto y destinatario según la rama que se dispare, no es un solo correo genérico.</li>
+        <li data-es="Mismo patrón de máquina de estados que el ciclo de vida de un pedido en Cocina MVP, aquí orquestado sin código." data-en="Same state-machine pattern as the order lifecycle in Cocina MVP, here orchestrated without code.">Mismo patrón de máquina de estados que el ciclo de vida de un pedido en Cocina MVP, aquí orquestado sin código.</li>
+        <li data-es="La propia lista de SharePoint funciona como bitácora — cada cambio de estado queda registrado con fecha, sin necesitar una base de datos aparte." data-en="The SharePoint list itself works as an audit log — every status change is timestamped, with no separate database needed.">La propia lista de SharePoint funciona como bitácora — cada cambio de estado queda registrado con fecha, sin necesitar una base de datos aparte.</li>
+        <li data-es="Las notificaciones cambian de texto y destinatario según la rama que se dispare, no es un solo correo genérico." data-en="Notifications change wording and recipient depending on which branch fires — not a single generic email.">Las notificaciones cambian de texto y destinatario según la rama que se dispare, no es un solo correo genérico.</li>
       </ul>
 
-      <p class="lede small muted" style="margin-top:1rem;">Por confidencialidad no comparto el flujo exportado (trae IDs internos de la nube de Odella) — el diagrama de arriba describe la lógica, no es una captura del flujo.</p>
+      <p class="lede small muted" style="margin-top:1rem;" data-es="Por confidencialidad no comparto el flujo exportado (trae IDs internos de la nube de Odella) — el diagrama de arriba describe la lógica, no es una captura del flujo." data-en="For confidentiality I don't share the exported flow (it carries Odella's internal cloud IDs) — the diagram above describes the logic, it isn't a screenshot of the flow.">Por confidencialidad no comparto el flujo exportado (trae IDs internos de la nube de Odella) — el diagrama de arriba describe la lógica, no es una captura del flujo.</p>
     </article>
 
     <article class="minicard">
-      <h3>Modelo Predictivo con Machine Learning</h3>
+      <h3 data-es="Modelo Predictivo con Machine Learning" data-en="Predictive Model with Machine Learning">Modelo Predictivo con Machine Learning</h3>
       <ul>
-        <li>Modelo de clasificación en Python.</li>
-        <li>Limpieza, transformación y análisis exploratorio de datos (EDA).</li>
-        <li>Feature engineering y validación con métricas de desempeño.</li>
+        <li data-es="Modelo de clasificación en Python." data-en="Classification model in Python.">Modelo de clasificación en Python.</li>
+        <li data-es="Limpieza, transformación y análisis exploratorio de datos (EDA)." data-en="Data cleaning, transformation and exploratory analysis (EDA).">Limpieza, transformación y análisis exploratorio de datos (EDA).</li>
+        <li data-es="Feature engineering y validación con métricas de desempeño." data-en="Feature engineering and validation with performance metrics.">Feature engineering y validación con métricas de desempeño.</li>
       </ul>
       <span class="stack">Python · pandas · scikit-learn · SQL</span>
     </article>
   </section>
 
   <section id="education">
-    <span class="eyebrow">Formación</span>
-    <h2 class="h">Educación y certificaciones</h2>
-    <div class="edu-row"><span class="school">Ingeniería en Sistemas Computacionales — UVEG (Titulado)</span><span class="years mono">2025</span></div>
-    <div class="edu-row"><span class="school">Ingeniería Industrial — IPN UPIICSA</span><span class="years mono">2018–2020</span></div>
+    <span class="eyebrow" data-es="Formación" data-en="Education">Formación</span>
+    <h2 class="h" data-es="Educación y certificaciones" data-en="Education &amp; Certifications">Educación y certificaciones</h2>
+    <div class="edu-row"><span class="school" data-es="Ingeniería en Sistemas Computacionales — UVEG (Titulado)" data-en="Computer Systems Engineering — UVEG (Graduated)">Ingeniería en Sistemas Computacionales — UVEG (Titulado)</span><span class="years mono">2025</span></div>
+    <div class="edu-row"><span class="school" data-es="Ingeniería Industrial — IPN UPIICSA" data-en="Industrial Engineering — IPN UPIICSA">Ingeniería Industrial — IPN UPIICSA</span><span class="years mono">2018–2020</span></div>
     <div class="certs">
       <div class="cert"><strong>IBM Data Analyst Professional Certificate</strong> — Coursera, 2025</div>
       <div class="cert"><strong>Microsoft Azure Fundamentals</strong></div>
-      <div class="cert">Inglés — nivel B2</div>
+      <div class="cert" data-es="Inglés — nivel B2" data-en="English — B2 level">Inglés — nivel B2</div>
     </div>
   </section>
 
   <footer id="contact">
-    <span>Joshue Moreno — Ecatepec de Morelos, Edo. Méx.</span>
+    <span data-es="Joshue Moreno — Ecatepec de Morelos, Edo. Méx." data-en="Joshue Moreno — Ecatepec de Morelos, Mexico">Joshue Moreno — Ecatepec de Morelos, Edo. Méx.</span>
     <span>joshuemoreno612@gmail.com · linkedin.com/in/joshue-moreno-3279692b3 · github.com/Josss180M</span>
   </footer>
 
@@ -667,6 +678,58 @@
       var prefix = el.getAttribute('data-prefix') || '';
       var suffix = el.getAttribute('data-suffix') || '';
       el.textContent = prefix + target.toFixed(decimals) + suffix;
+    });
+  })();
+
+  (function(){
+    var KEY = 'jm-portfolio-lang';
+
+    function applyLang(lang){
+      document.documentElement.setAttribute('lang', lang);
+
+      document.querySelectorAll('[data-es]').forEach(function(el){
+        var v = el.getAttribute('data-' + lang);
+        if (v === null) return;
+        if (el.hasAttribute('data-html')) el.innerHTML = v;
+        else el.textContent = v;
+      });
+
+      document.querySelectorAll('[data-alt-es]').forEach(function(el){
+        var v = el.getAttribute('data-alt-' + lang);
+        if (v !== null) el.setAttribute('alt', v);
+      });
+
+      document.querySelectorAll('[data-aria-es]').forEach(function(el){
+        var v = el.getAttribute('data-aria-' + lang);
+        if (v !== null) el.setAttribute('aria-label', v);
+      });
+
+      var meta = document.getElementById('metaDesc');
+      if (meta){
+        var d = meta.getAttribute('data-desc-' + lang);
+        if (d) meta.setAttribute('content', d);
+      }
+
+      var btn = document.getElementById('langBtn');
+      if (btn) btn.textContent = (lang === 'es') ? 'EN' : 'ES';
+
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    }
+
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    var current = (saved === 'en') ? 'en' : 'es';
+
+    if (current === 'en') {
+      applyLang('en');
+    } else {
+      var btn = document.getElementById('langBtn');
+      if (btn) btn.textContent = 'EN';
+    }
+
+    document.getElementById('langBtn').addEventListener('click', function(){
+      current = (current === 'es') ? 'en' : 'es';
+      applyLang(current);
     });
   })();
 </script>
