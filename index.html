@@ -86,12 +86,14 @@
   nav.toplinks a:hover{color:var(--meter);}
   @media (max-width:680px){ nav.toplinks{display:none;} }
   .lang-btn{
-    font-family:var(--font-mono); font-size:.72rem; font-weight:700;
-    padding:.35rem .7rem; border:1px solid rgba(var(--line),var(--line-alpha));
-    border-radius:999px; background:var(--paper-raised); color:var(--ink);
-    cursor:pointer; letter-spacing:.03em;
+    font-family:var(--font-mono); font-size:.82rem; font-weight:800;
+    padding:.55rem 1rem; border:2px solid var(--yellow);
+    border-radius:999px; background:var(--yellow); color:#fff;
+    cursor:pointer; letter-spacing:.04em;
+    display:inline-flex; align-items:center; gap:.4rem;
   }
-  .lang-btn:hover{border-color:var(--meter); color:var(--meter);}
+  .lang-btn:hover{background:var(--meter); border-color:var(--meter);}
+  .lang-btn:focus-visible{outline:2px solid var(--meter); outline-offset:2px;}
 
   section{padding:3.2rem 0; scroll-margin-top:4rem;}
   section + section{border-top:1px solid rgba(var(--line),var(--line-alpha));}
@@ -284,7 +286,7 @@
         <a href="#education" data-es="Formación" data-en="Education">Formación</a>
         <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
       </nav>
-      <button id="langBtn" class="lang-btn" type="button" aria-label="Switch language / Cambiar idioma">EN</button>
+      <button id="langBtn" class="lang-btn" type="button" aria-label="Switch language / Cambiar idioma">🌐 <span id="langBtnText">EN</span></button>
     </div>
   </div>
 </div>
@@ -710,8 +712,8 @@
         if (d) meta.setAttribute('content', d);
       }
 
-      var btn = document.getElementById('langBtn');
-      if (btn) btn.textContent = (lang === 'es') ? 'EN' : 'ES';
+      var btnText = document.getElementById('langBtnText');
+      if (btnText) btnText.textContent = (lang === 'es') ? 'EN' : 'ES';
 
       try { localStorage.setItem(KEY, lang); } catch (e) {}
     }
@@ -723,8 +725,8 @@
     if (current === 'en') {
       applyLang('en');
     } else {
-      var btn = document.getElementById('langBtn');
-      if (btn) btn.textContent = 'EN';
+      var btnText = document.getElementById('langBtnText');
+      if (btnText) btnText.textContent = 'EN';
     }
 
     document.getElementById('langBtn').addEventListener('click', function(){
